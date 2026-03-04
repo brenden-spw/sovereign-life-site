@@ -1,6 +1,35 @@
 import Link from "next/link";
 import ParticleNetwork from "@/components/ParticleNetwork";
 import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import Accordion from "@/components/Accordion";
+import Tooltip from "@/components/Tooltip";
+
+const faqItems = [
+  {
+    question: "Does a SAFE Account replace my 401(k) or IRA?",
+    answer: "No — it works alongside them. Your 401(k) and IRA remain your primary growth vehicles. The SAFE Account is the buffer you draw from during market downturns, leaving your retirement accounts untouched until they recover.",
+  },
+  {
+    question: "How much do I need to fund it?",
+    answer: "The target is 6 years of your desired retirement income. For a $100,000/year income goal, that means building a $600,000 buffer. How you get there — and how long it takes — depends entirely on your timeline. We build a custom funding path in your strategy call.",
+  },
+  {
+    question: "Is this the same as 'infinite banking'?",
+    answer: "Related concept, different application. Infinite banking focuses on using policy loans as an alternative to conventional financing. The SAFE Method uses the same whole life policy structure specifically as a retirement income buffer — to eliminate sequence-of-returns risk and increase your safe distribution rate.",
+  },
+  {
+    question: "What if I need the money before retirement?",
+    answer: "The cash value in a whole life policy is accessible at any time via policy loans — no penalty, no tax consequence, no minimum age requirement. It's liquid capital you can access when needed.",
+  },
+  {
+    question: "Is this only for people close to retirement?",
+    answer: "No. Starting earlier is significantly more advantageous. Pre-retirees with 10+ years can fund the buffer gradually with smaller annual contributions and benefit from years of compounding. The closer you are to retirement, the more aggressive the funding path needs to be — but it's achievable at any stage.",
+  },
+  {
+    question: "What kind of returns does the SAFE Account generate?",
+    answer: "Whole life policies typically generate 4–5% guaranteed returns. That's not the point — the buffer doesn't need to match market returns. It needs to be stable, non-correlated, and accessible during downturns. That stability is what allows your market accounts to recover instead of being drawn down at the worst possible moment.",
+  },
+];
 
 export default function TheSafeMethodPage() {
   return (
@@ -17,7 +46,7 @@ export default function TheSafeMethodPage() {
             Why most retirement plans are built on a broken assumption — and how to fix yours.
           </h1>
           <p className="body-lg">
-            The SAFE Method is a retirement income strategy designed around one insight: market volatility doesn't just reduce your returns — it systematically destroys the income you can safely take from your retirement assets. The solution is a volatility buffer. Here's exactly how it works.
+            The SAFE Method is a retirement income strategy designed around one insight: market volatility doesn't just reduce your returns — it systematically destroys the income you can safely take from your retirement assets. The solution is a <Tooltip term="volatility buffer" definition="A separate, non-correlated pool of money you draw income from during market downturns — leaving your growth accounts untouched until they recover." />. Here's exactly how it works.
           </p>
         </div>
       </section>
@@ -34,7 +63,7 @@ export default function TheSafeMethodPage() {
             Through the 1980s and 90s, the strategy was simple: earn 14%+ on your investments, live off the interest, never touch the principal. It worked.
           </p>
           <p className="body-lg" style={{ marginBottom: "1.5rem" }}>
-            Then something unprecedented happened. The 4% rule — the standard for how much you can safely withdraw from retirement assets — quietly dropped to 2.8%. Most financial advisors still plan around 4%. Most Americans don't know the gap exists.
+            Then something unprecedented happened. The <Tooltip term="4% rule" definition="A long-standing retirement planning guideline stating you can safely withdraw 4% of your portfolio per year without running out of money. Recent research has significantly revised this figure downward." /> — the standard for how much you can safely withdraw from retirement assets — quietly dropped to 2.8%. Most financial advisors still plan around 4%. Most Americans don't know the gap exists.
           </p>
           <p className="body-lg" style={{ marginBottom: "3rem" }}>
             The result: if you want $200,000 per year in retirement income, you don't need $5,000,000 saved — you now need $7,100,000. That's a $2,100,000 gap. And most people have no idea it's there.
@@ -105,10 +134,10 @@ export default function TheSafeMethodPage() {
           <p className="label" style={{ marginBottom: "0.875rem" }}>The Solution</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "2rem" }}>A volatility buffer changes everything.</h2>
           <p className="body-lg" style={{ marginBottom: "1.5rem" }}>
-            A volatility buffer is a separate, non-correlated pool of money. When the market is up, you take income from your retirement assets normally. When the market is down, you draw from the buffer instead — and leave your growth accounts untouched until they recover.
+            A volatility buffer is a separate, <Tooltip term="non-correlated" definition="An asset whose value moves independently of stock market performance — so when markets fall, it doesn't fall with them." /> pool of money. When the market is up, you take income from your retirement assets normally. When the market is down, you draw from the buffer instead — and leave your growth accounts untouched until they recover.
           </p>
           <p className="body-lg" style={{ marginBottom: "1.5rem" }}>
-            The research is clear. Retirement income PhD Wade Pfau found that with a 6-year volatility buffer, safe distribution rates from retirement assets effectively double — from under 3% to 8% or more.
+            The research is clear. Retirement income PhD Wade Pfau found that with a 6-year volatility buffer, safe <Tooltip term="distribution rates" definition="The percentage of your retirement portfolio you withdraw each year for income. A 4% distribution rate on a $1M portfolio = $40,000/year." /> from retirement assets effectively double — from under 3% to 8% or more.
           </p>
           <p className="body-lg" style={{ marginBottom: "3.5rem" }}>
             The buffer doesn't need to earn a high return. It needs to be stable, liquid, and non-correlated. That's what makes it powerful — and that's exactly what the right life insurance policy provides.
@@ -133,8 +162,8 @@ export default function TheSafeMethodPage() {
               <p className="label" style={{ marginBottom: "0.875rem" }}>The SAFE Account</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>Why only one account type qualifies.</h2>
               <p className="body-lg" style={{ marginBottom: "1.5rem" }}>We evaluated every major asset class as a potential volatility buffer. Cash and savings accounts don't grow enough. Brokerage accounts are market-correlated. Real estate isn't liquid. Retirement accounts create tax drag on every withdrawal.</p>
-              <p className="body-lg" style={{ marginBottom: "1.5rem" }}>A specially-designed whole life insurance policy — built specifically for cash value accumulation, not death benefit — is the only account that meets every requirement.</p>
-              <p className="body-lg">This is not a traditional whole life policy you buy off the shelf. It's a policy engineered to maximize accessible, tax-free cash value with guaranteed, non-correlated growth.</p>
+              <p className="body-lg" style={{ marginBottom: "1.5rem" }}>A specially-designed whole life insurance policy — built specifically for <Tooltip term="cash value" definition="The savings component inside a permanent life insurance policy. It grows over time, is accessible via policy loans, and is guaranteed not to decrease." /> accumulation, not death benefit — is the only account that meets every requirement.</p>
+              <p className="body-lg">This is not a traditional whole life policy you buy off the shelf. It's a policy engineered to maximize accessible, tax-free <Tooltip term="policy loans" definition="Borrowing against the cash value in your life insurance policy. No credit check, no repayment schedule, no tax event — the cash value continues to grow as if the loan was never taken." /> with guaranteed, non-correlated growth.</p>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -179,6 +208,17 @@ export default function TheSafeMethodPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ──────────────────────────────────────────────── */}
+      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
+        <ParticleNetwork config={{ count: 22, speed: 0.12, threshold: 102, opacity: 0.42, upwardBias: 0.32 }} />
+
+        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+          <p className="label" style={{ marginBottom: "0.875rem" }}>Common Questions</p>
+          <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "3.5rem" }}>What people typically want to know.</h2>
+          <Accordion items={faqItems} />
         </div>
       </section>
 
