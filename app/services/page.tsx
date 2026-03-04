@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ParticleNetwork from "@/components/ParticleNetwork";
 import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ServicesPage() {
   return (
@@ -12,11 +13,11 @@ export default function ServicesPage() {
         <ScanLine duration="14s" />
 
         <div className="container-site" style={{ maxWidth: "800px", position: "relative", zIndex: 2 }}>
-          <p className="label" style={{ marginBottom: "1rem" }}>Services</p>
-          <h1 style={{ fontFamily: "'Raleway', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, letterSpacing: "0.03em", lineHeight: 1.1, color: "#f5f2ed", marginBottom: "2rem" }}>
+          <p className="label animate-in" style={{ marginBottom: "1rem" }}>Services</p>
+          <h1 className="animate-in animate-in-delay-1" style={{ fontFamily: "'Raleway', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, letterSpacing: "0.03em", lineHeight: 1.1, color: "#f5f2ed", marginBottom: "2rem" }}>
             What we do, and why it matters.
           </h1>
-          <p className="body-lg">
+          <p className="body-lg animate-in animate-in-delay-2">
             Life insurance is the product. The application is what varies. We work with clients to identify the financial objective first — then determine whether and how a life insurance policy serves it.
           </p>
         </div>
@@ -61,9 +62,17 @@ export default function ServicesPage() {
                 notes: ["Buy-sell agreement funding", "Estate and succession planning support", "Coordination with legal and financial advisors"],
               },
             ].map((service, i) => (
-              <div
+              <ScrollReveal
                 key={service.title}
-                style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start", padding: "3.5rem 0", borderTop: "1px solid #1e1e1e" }}
+                delay={i * 60}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "4rem",
+                  alignItems: "start",
+                  padding: "3.5rem 0",
+                  borderTop: "1px solid #1e1e1e",
+                }}
               >
                 <div>
                   <h2 style={{ fontFamily: "'Raleway', sans-serif", fontSize: "clamp(1.1rem, 2vw, 1.4rem)", fontWeight: 300, color: "#f5f2ed", marginBottom: "1.25rem", letterSpacing: "0.02em" }}>
@@ -79,7 +88,7 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -89,12 +98,12 @@ export default function ServicesPage() {
       <section className="section" style={{ backgroundColor: "#070707", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 20, speed: 0.11, threshold: 100, opacity: 0.38, upwardBias: 0.3 }} />
 
-        <div className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
           <p className="label" style={{ marginBottom: "1.25rem" }}>Next Step</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>Start with a conversation.</h2>
           <p className="body-lg" style={{ marginBottom: "2.5rem" }}>If you have a specific need or just want to understand what's possible, we're happy to talk through it — no pressure, no pitch.</p>
           <Link href="/contact" className="btn-primary">Get in Touch</Link>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );

@@ -3,6 +3,7 @@ import TypewriterText from "@/components/TypewriterText";
 import FlashlightCard from "@/components/FlashlightCard";
 import ParticleNetwork from "@/components/ParticleNetwork";
 import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function HomePage() {
   return (
@@ -18,13 +19,11 @@ export default function HomePage() {
         justifyContent: "center",
         paddingTop: "5rem",
       }}>
-        {/* Richest layer — hero gets full treatment */}
         <ParticleNetwork config={{ count: 65, speed: 0.2, threshold: 140, opacity: 1, mouseEffect: true, upwardBias: 0.42 }} />
         <AmbientOrbs variant="a" />
         <ScanLine duration="14s" />
 
-        {/* Corner bracket marks */}
-        {[
+        {[\
           { style: { top: "1.5rem", left: "1.5rem" },   d: "M0 10 L0 0 L10 0"    },
           { style: { top: "1.5rem", right: "1.5rem" },  d: "M16 10 L16 0 L6 0"   },
           { style: { bottom: "1.5rem", left: "1.5rem" }, d: "M0 6 L0 16 L10 16"  },
@@ -67,14 +66,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── WHAT WE DO ─────────────────────── density steps down */}
+      {/* ── WHAT WE DO ───────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 38, speed: 0.15, threshold: 120, opacity: 0.65, upwardBias: 0.38 }} />
         <AmbientOrbs variant="b" />
 
         <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
-            <div>
+            <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>What We Do</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>
                 Life insurance designed around a specific financial objective.
@@ -85,9 +84,9 @@ export default function HomePage() {
               <p className="body-lg">
                 Our work begins with understanding what a client is trying to accomplish. Coverage and structure follow from that.
               </p>
-            </div>
+            </ScrollReveal>
 
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <ScrollReveal delay={150} style={{ display: "flex", flexDirection: "column" }}>
               {[
                 { title: "Income Protection",              body: "Term and permanent life insurance structured to replace income, cover obligations, and protect the people who depend on it." },
                 { title: "Tax Strategy",                   body: "Permanent life insurance policies designed to accumulate cash value on a tax-advantaged basis, providing accessible capital without triggering taxable events." },
@@ -100,19 +99,19 @@ export default function HomePage() {
                   <p className="body-sm">{item.body}</p>
                 </FlashlightCard>
               ))}
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ── THE FIRM ─────────────────────────── density steps down again */}
+      {/* ── THE FIRM ─────────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#070707", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 28, speed: 0.13, threshold: 110, opacity: 0.5, upwardBias: 0.35 }} />
         <AmbientOrbs variant="c" />
 
         <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
-            <div>
+            <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>The Firm</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>
                 Independent. Objective. Focused on outcomes.
@@ -126,9 +125,9 @@ export default function HomePage() {
               <p className="body-lg">
                 Our clients range from individuals and families planning for long-term security to business owners who need coverage that serves a specific strategic function.
               </p>
-            </div>
+            </ScrollReveal>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            <ScrollReveal delay={150} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
               {[
                 { name: "Carson Herlean", title: "Founding Partner", bio: "Carson focuses on retirement income strategy and the structured use of permanent life insurance as a financial planning tool. He works primarily with individuals and families looking to build a more resilient financial foundation." },
                 { name: "Bradley Gibb",   title: "Founding Partner", bio: "Bradley brings a background in financial strategy and capital structure to Sovereign Life's client engagements. He specializes in working with business owners and entrepreneurs who need coverage that functions alongside a broader financial plan." },
@@ -139,16 +138,16 @@ export default function HomePage() {
                   <p className="body-sm">{person.bio}</p>
                 </FlashlightCard>
               ))}
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ── APPROACH ─────────────────────────── same density as firm */}
+      {/* ── APPROACH ─────────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#050505", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 28, speed: 0.14, threshold: 115, opacity: 0.5, upwardBias: 0.35 }} />
 
-        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
           <FlashlightCard className="beam-border" style={{ padding: "4rem", backgroundColor: "#111111", borderRadius: "2px" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
               <div>
@@ -169,19 +168,19 @@ export default function HomePage() {
               </div>
             </div>
           </FlashlightCard>
-        </div>
+        </ScrollReveal>
       </section>
 
-      {/* ── CTA ───────────────────────────── lowest density — breathing room */}
+      {/* ── CTA ──────────────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 20, speed: 0.11, threshold: 100, opacity: 0.38, upwardBias: 0.3 }} />
 
-        <div className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
           <p className="label" style={{ marginBottom: "1.25rem" }}>Contact</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>Start with a conversation.</h2>
           <p className="body-lg" style={{ marginBottom: "2.5rem" }}>If you're evaluating coverage or want to understand how a policy might fit your specific situation, we're happy to talk through it.</p>
           <Link href="/contact" className="btn-primary">Get in Touch</Link>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );

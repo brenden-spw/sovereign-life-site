@@ -1,5 +1,6 @@
 import ParticleNetwork from "@/components/ParticleNetwork";
 import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function GetStartedPage() {
   return (
@@ -11,21 +12,11 @@ export default function GetStartedPage() {
         <ScanLine duration="14s" />
 
         <div className="container-site" style={{ maxWidth: "700px", position: "relative", zIndex: 2 }}>
-          <p className="label" style={{ marginBottom: "1rem" }}>Get Started</p>
-          <h1
-            style={{
-              fontFamily: "'Raleway', sans-serif",
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              fontWeight: 300,
-              letterSpacing: "0.03em",
-              lineHeight: 1.1,
-              color: "#f5f2ed",
-              marginBottom: "2rem",
-            }}
-          >
+          <p className="label animate-in" style={{ marginBottom: "1rem" }}>Get Started</p>
+          <h1 className="animate-in animate-in-delay-1" style={{ fontFamily: "'Raleway', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, letterSpacing: "0.03em", lineHeight: 1.1, color: "#f5f2ed", marginBottom: "2rem" }}>
             Book a free SAFE Method strategy call.
           </h1>
-          <p className="body-lg">
+          <p className="body-lg animate-in animate-in-delay-2">
             In one conversation, we'll map your current retirement trajectory, run a custom income simulation using your actual numbers, and show you exactly what a volatility buffer changes — before and after. No obligation.
           </p>
         </div>
@@ -38,7 +29,7 @@ export default function GetStartedPage() {
 
         <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
-            <div>
+            <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>What to Expect</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>
                 A real conversation, not a sales call.
@@ -49,37 +40,39 @@ export default function GetStartedPage() {
               <p className="body-lg">
                 From there, we'll build a custom simulation that shows your retirement income trajectory with and without a SAFE Account. You'll leave with clarity regardless of whether we work together.
               </p>
-            </div>
+            </ScrollReveal>
 
-            <div className="glass" style={{ padding: "2.5rem" }}>
-              <p className="label" style={{ marginBottom: "1.75rem", color: "#638479" }}>
-                What's included in your free call
-              </p>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                {[
-                  "Custom retirement income simulation (your actual numbers)",
-                  "Before-and-after comparison with the SAFE Method",
-                  "SAFE Account funding path based on your timeline",
-                  "Clear explanation of what qualifies — and what doesn't",
-                  "SAFE Method Report and Resource Library",
-                ].map((point, i) => (
-                  <li
-                    key={i}
-                    style={{
-                      display: "flex",
-                      gap: "1rem",
-                      alignItems: "flex-start",
-                      paddingTop: i > 0 ? "1.25rem" : 0,
-                      paddingBottom: "1.25rem",
-                      borderBottom: i < 4 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                    }}
-                  >
-                    <span style={{ color: "#638479", flexShrink: 0, marginTop: "0.15rem", fontSize: "0.65rem", letterSpacing: "0.1em" }}>——</span>
-                    <p className="body-sm" style={{ margin: 0, color: "#D3CFC3" }}>{point}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ScrollReveal delay={150}>
+              <div className="glass" style={{ padding: "2.5rem" }}>
+                <p className="label" style={{ marginBottom: "1.75rem", color: "#638479" }}>
+                  What's included in your free call
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {[
+                    "Custom retirement income simulation (your actual numbers)",
+                    "Before-and-after comparison with the SAFE Method",
+                    "SAFE Account funding path based on your timeline",
+                    "Clear explanation of what qualifies — and what doesn't",
+                    "SAFE Method Report and Resource Library",
+                  ].map((point, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        display: "flex",
+                        gap: "1rem",
+                        alignItems: "flex-start",
+                        paddingTop: i > 0 ? "1.25rem" : 0,
+                        paddingBottom: "1.25rem",
+                        borderBottom: i < 4 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                      }}
+                    >
+                      <span style={{ color: "#638479", flexShrink: 0, marginTop: "0.15rem", fontSize: "0.65rem", letterSpacing: "0.1em" }}>——</span>
+                      <p className="body-sm" style={{ margin: 0, color: "#D3CFC3" }}>{point}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -89,13 +82,12 @@ export default function GetStartedPage() {
         <ParticleNetwork config={{ count: 28, speed: 0.13, threshold: 110, opacity: 0.48, upwardBias: 0.35 }} />
         <AmbientOrbs variant="c" />
 
-        <div className="container-site" style={{ maxWidth: "760px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "760px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <p className="label" style={{ marginBottom: "0.875rem", textAlign: "center" }}>Schedule Your Call</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "3.5rem", textAlign: "center" }}>
             Choose a time that works for you.
           </h2>
 
-          {/* Calendly embed placeholder */}
           <div
             className="glass"
             style={{
@@ -117,14 +109,14 @@ export default function GetStartedPage() {
               yoursafemethod.com/start
             </p>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── REASSURANCE ──────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#050505", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 20, speed: 0.11, threshold: 100, opacity: 0.38, upwardBias: 0.3 }} />
 
-        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
             {[
               {
@@ -148,7 +140,7 @@ export default function GetStartedPage() {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );

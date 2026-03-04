@@ -3,6 +3,8 @@ import ParticleNetwork from "@/components/ParticleNetwork";
 import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
 import Accordion from "@/components/Accordion";
 import Tooltip from "@/components/Tooltip";
+import ScrollReveal from "@/components/ScrollReveal";
+import CountUp from "@/components/CountUp";
 
 const faqItems = [
   {
@@ -41,11 +43,11 @@ export default function TheSafeMethodPage() {
         <ScanLine duration="14s" />
 
         <div className="container-site" style={{ maxWidth: "800px", position: "relative", zIndex: 2 }}>
-          <p className="label" style={{ marginBottom: "1rem" }}>The SAFE Method</p>
-          <h1 style={{ fontFamily: "'Raleway', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, letterSpacing: "0.03em", lineHeight: 1.1, color: "#f5f2ed", marginBottom: "2rem" }}>
+          <p className="label animate-in" style={{ marginBottom: "1rem" }}>The SAFE Method</p>
+          <h1 className="animate-in animate-in-delay-1" style={{ fontFamily: "'Raleway', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, letterSpacing: "0.03em", lineHeight: 1.1, color: "#f5f2ed", marginBottom: "2rem" }}>
             Why most retirement plans are built on a broken assumption — and how to fix yours.
           </h1>
-          <p className="body-lg">
+          <p className="body-lg animate-in animate-in-delay-2">
             The SAFE Method is a retirement income strategy designed around one insight: market volatility doesn't just reduce your returns — it systematically destroys the income you can safely take from your retirement assets. The solution is a <Tooltip term="volatility buffer" definition="A separate, non-correlated pool of money you draw income from during market downturns — leaving your growth accounts untouched until they recover." />. Here's exactly how it works.
           </p>
         </div>
@@ -56,7 +58,7 @@ export default function TheSafeMethodPage() {
         <ParticleNetwork config={{ count: 38, speed: 0.15, threshold: 120, opacity: 0.6, upwardBias: 0.38 }} />
         <AmbientOrbs variant="b" />
 
-        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>The Retirement Crisis</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "2rem" }}>The rules changed. Most people don't know.</h2>
           <p className="body-lg" style={{ marginBottom: "1.5rem" }}>
@@ -73,25 +75,27 @@ export default function TheSafeMethodPage() {
             <p className="label" style={{ marginBottom: "2rem", color: "#638479" }}>The retirement gap — $200k/year income goal</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
               {[
-                { label: "Without a SAFE Account", rate: "2.8% distribution rate", amount: "$7,100,000 needed" },
-                { label: "With a SAFE Account",    rate: "8% distribution rate",   amount: "$2,500,000 needed" },
+                { label: "Without a SAFE Account", rate: "2.8% distribution rate", value: 7100000 },
+                { label: "With a SAFE Account",    rate: "8% distribution rate",   value: 2500000 },
               ].map((item) => (
                 <div key={item.label} style={{ padding: "2rem", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                   <p className="label" style={{ marginBottom: "1rem" }}>{item.label}</p>
-                  <p style={{ fontFamily: "'Raleway', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", fontWeight: 200, color: "#f5f2ed", marginBottom: "0.5rem" }}>{item.amount}</p>
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.6rem, 3vw, 2.6rem)", fontWeight: 300, color: "#f5f2ed", marginBottom: "0.5rem", lineHeight: 1 }}>
+                    $<CountUp value={item.value} /> <span style={{ fontSize: "0.55em", opacity: 0.7, fontWeight: 300 }}>needed</span>
+                  </p>
                   <p className="body-sm">{item.rate}</p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── 3 REASONS ────────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#070707", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 28, speed: 0.13, threshold: 110, opacity: 0.5, upwardBias: 0.35 }} />
 
-        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>Why Volatility Is So Destructive</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "3.5rem" }}>Three reasons volatility destroys retirement income.</h2>
 
@@ -114,7 +118,7 @@ export default function TheSafeMethodPage() {
               },
             ].map((item) => (
               <div key={item.num} style={{ display: "grid", gridTemplateColumns: "80px 1fr", gap: "2rem", alignItems: "start" }}>
-                <p style={{ fontFamily: "'Raleway', sans-serif", fontSize: "3rem", fontWeight: 200, color: "rgba(255,255,255,0.08)", lineHeight: 1 }}>{item.num}</p>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "5rem", fontWeight: 300, color: "rgba(255,255,255,0.07)", lineHeight: 1 }}>{item.num}</p>
                 <div>
                   <h3 style={{ fontFamily: "'Raleway', sans-serif", fontSize: "1.25rem", fontWeight: 300, color: "#f5f2ed", marginBottom: "0.875rem", letterSpacing: "0.02em" }}>{item.title}</h3>
                   <p className="body-lg">{item.body}</p>
@@ -122,7 +126,7 @@ export default function TheSafeMethodPage() {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── THE VOLATILITY BUFFER ────────────────────────────── */}
@@ -130,7 +134,7 @@ export default function TheSafeMethodPage() {
         <ParticleNetwork config={{ count: 32, speed: 0.14, threshold: 115, opacity: 0.52, upwardBias: 0.38 }} />
         <AmbientOrbs variant="c" />
 
-        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>The Solution</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "2rem" }}>A volatility buffer changes everything.</h2>
           <p className="body-lg" style={{ marginBottom: "1.5rem" }}>
@@ -144,12 +148,12 @@ export default function TheSafeMethodPage() {
           </p>
 
           <div style={{ borderLeft: "2px solid #638479", paddingLeft: "2rem", marginBottom: "3.5rem" }}>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.2rem, 2vw, 1.5rem)", fontWeight: 300, color: "#f5f2ed", lineHeight: 1.6, fontStyle: "italic" }}>
+            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.2rem, 2vw, 1.6rem)", fontWeight: 300, color: "#f5f2ed", lineHeight: 1.65, fontStyle: "italic" }}>
               "Perhaps the greatest risk that retirees face is the possibility that stock prices will fall early in retirement. If this happens, the value of a buffer asset will provide the greatest protection against outliving assets."
             </p>
             <p className="body-sm" style={{ marginTop: "1rem" }}>— Wade Pfau, PhD, Retirement Income Research</p>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── WHY WHOLE LIFE ───────────────────────────────────── */}
@@ -158,22 +162,22 @@ export default function TheSafeMethodPage() {
 
         <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
-            <div>
+            <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>The SAFE Account</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>Why only one account type qualifies.</h2>
               <p className="body-lg" style={{ marginBottom: "1.5rem" }}>We evaluated every major asset class as a potential volatility buffer. Cash and savings accounts don't grow enough. Brokerage accounts are market-correlated. Real estate isn't liquid. Retirement accounts create tax drag on every withdrawal.</p>
               <p className="body-lg" style={{ marginBottom: "1.5rem" }}>A specially-designed whole life insurance policy — built specifically for <Tooltip term="cash value" definition="The savings component inside a permanent life insurance policy. It grows over time, is accessible via policy loans, and is guaranteed not to decrease." /> accumulation, not death benefit — is the only account that meets every requirement.</p>
               <p className="body-lg">This is not a traditional whole life policy you buy off the shelf. It's a policy engineered to maximize accessible, tax-free <Tooltip term="policy loans" definition="Borrowing against the cash value in your life insurance policy. No credit check, no repayment schedule, no tax event — the cash value continues to grow as if the loan was never taken." /> with guaranteed, non-correlated growth.</p>
-            </div>
+            </ScrollReveal>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            <ScrollReveal delay={150} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {["Non-correlated to the market", "Guaranteed — no downside risk", "Tax-free access to cash value", "Liquid — accessible when needed", "Predictable, measurable growth", "Secured — no market loss exposure"].map((item, i) => (
                 <div key={i} className="glass-subtle" style={{ padding: "1.25rem 1.75rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
                   <p className="body-sm" style={{ margin: 0, color: "#D3CFC3" }}>{item}</p>
                   <span style={{ color: "#638479", flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.1em" }}>——</span>
                 </div>
               ))}
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -183,7 +187,7 @@ export default function TheSafeMethodPage() {
         <ParticleNetwork config={{ count: 25, speed: 0.12, threshold: 105, opacity: 0.44, upwardBias: 0.32 }} />
         <AmbientOrbs variant="b" />
 
-        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>Funding the SAFE Account</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>The right approach depends on where you are.</h2>
           <p className="body-lg" style={{ marginBottom: "3.5rem" }}>The goal is 6 years of your target retirement income sitting in your SAFE Account. How you get there depends on your timeline.</p>
@@ -208,32 +212,32 @@ export default function TheSafeMethodPage() {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 22, speed: 0.12, threshold: 102, opacity: 0.42, upwardBias: 0.32 }} />
 
-        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>Common Questions</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "3.5rem" }}>What people typically want to know.</h2>
           <Accordion items={faqItems} />
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#050505", position: "relative", overflow: "hidden" }}>
         <ParticleNetwork config={{ count: 20, speed: 0.11, threshold: 100, opacity: 0.38, upwardBias: 0.3 }} />
 
-        <div className="container-site" style={{ maxWidth: "680px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <div className="glass" style={{ padding: "4rem", textAlign: "center" }}>
             <p className="label" style={{ marginBottom: "1.25rem" }}>Next Step</p>
             <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>Run your numbers with us.</h2>
             <p className="body-lg" style={{ marginBottom: "2.5rem" }}>Book a free SAFE Method strategy call. We'll build a custom retirement income simulation using your actual numbers. No obligation.</p>
             <Link href="/contact" className="btn-primary">Book a Free Call</Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );

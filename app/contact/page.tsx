@@ -1,5 +1,6 @@
 import ParticleNetwork from "@/components/ParticleNetwork";
 import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ContactPage() {
   return (
@@ -11,21 +12,11 @@ export default function ContactPage() {
         <ScanLine duration="14s" />
 
         <div className="container-site" style={{ maxWidth: "700px", position: "relative", zIndex: 2 }}>
-          <p className="label" style={{ marginBottom: "1rem" }}>Contact</p>
-          <h1
-            style={{
-              fontFamily: "'Raleway', sans-serif",
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              fontWeight: 300,
-              letterSpacing: "0.03em",
-              lineHeight: 1.1,
-              color: "#f5f2ed",
-              marginBottom: "2rem",
-            }}
-          >
+          <p className="label animate-in" style={{ marginBottom: "1rem" }}>Contact</p>
+          <h1 className="animate-in animate-in-delay-1" style={{ fontFamily: "'Raleway', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 300, letterSpacing: "0.03em", lineHeight: 1.1, color: "#f5f2ed", marginBottom: "2rem" }}>
             Get in touch.
           </h1>
-          <p className="body-lg">
+          <p className="body-lg animate-in animate-in-delay-2">
             Whether you have a specific coverage question or want to understand how life insurance fits within your financial picture, we're available to talk through it.
           </p>
         </div>
@@ -39,8 +30,7 @@ export default function ContactPage() {
         <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
 
-            {/* Scheduling */}
-            <div>
+            <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>Schedule a Call</p>
               <h2 className="headline-sm" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>
                 Book time directly.
@@ -49,7 +39,6 @@ export default function ContactPage() {
                 Use the link below to find a time that works. Initial conversations are typically 30–45 minutes and are focused on understanding your situation before making any recommendations.
               </p>
 
-              {/* Calendly / scheduling embed placeholder */}
               <div
                 className="glass"
                 style={{
@@ -68,10 +57,9 @@ export default function ContactPage() {
                   Add your scheduling link or Calendly embed here.
                 </p>
               </div>
-            </div>
+            </ScrollReveal>
 
-            {/* Direct contact */}
-            <div>
+            <ScrollReveal delay={150}>
               <p className="label" style={{ marginBottom: "0.875rem" }}>Direct Contact</p>
               <h2 className="headline-sm" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>
                 Reach us directly.
@@ -103,7 +91,7 @@ export default function ContactPage() {
               <p className="body-sm" style={{ marginTop: "2rem", color: "#6a6760" }}>
                 Sovereign Life is licensed in [states]. All inquiries are handled directly by a licensed professional.
               </p>
-            </div>
+            </ScrollReveal>
 
           </div>
         </div>
