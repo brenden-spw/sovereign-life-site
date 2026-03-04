@@ -23,7 +23,7 @@ export default function HomePage() {
         <AmbientOrbs variant="a" />
         <ScanLine duration="14s" />
 
-        {[\
+        {[
           { style: { top: "1.5rem", left: "1.5rem" },   d: "M0 10 L0 0 L10 0"    },
           { style: { top: "1.5rem", right: "1.5rem" },  d: "M16 10 L16 0 L6 0"   },
           { style: { bottom: "1.5rem", left: "1.5rem" }, d: "M0 6 L0 16 L10 16"  },
