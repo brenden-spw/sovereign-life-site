@@ -13,11 +13,15 @@ export default function ScrollReveal({
   style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  // Start visible on server / before JS so SSR doesn't hide content
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Hide first, then watch for intersection
+    setVisible(false);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -29,8 +33,13 @@ export default function ScrollReveal({
       { threshold: 0.08, rootMargin: "0px 0px -48px 0px" }
     );
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    // Small delay before observing so the initial hide doesn't flash
+    const timer = setTimeout(() => observer.observe(el), 50);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, []);
 
   return (

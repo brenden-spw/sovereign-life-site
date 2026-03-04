@@ -23,7 +23,7 @@ export default function CountUp({
           observer.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.15 }
     );
 
     observer.observe(el);
