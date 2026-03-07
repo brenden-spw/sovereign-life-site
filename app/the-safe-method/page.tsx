@@ -164,46 +164,93 @@ export default function TheSafeMethodPage() {
       {/* ── BEFORE / AFTER DIAGRAMS ──────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#070707" }}>
         <ScrollReveal className="container-site">
-          <p className="label" style={{ marginBottom: "0.875rem", textAlign: "center" }}>Visual Comparison</p>
+          <p className="label" style={{ marginBottom: "0.875rem", textAlign: "center" }}>Side-by-Side Comparison</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1rem", textAlign: "center" }}>
-            The same market — two completely different outcomes.
+            The same market. Two completely different outcomes.
           </h2>
           <p className="body-lg" style={{ maxWidth: "640px", margin: "0 auto 4rem", textAlign: "center" }}>
-            Both scenarios start with identical portfolios and face identical market conditions. The only difference is whether a volatility buffer exists.
+            Both portfolios start at $1M, need $60k/year, and face the same market sequence. The only variable: whether a $360k volatility buffer exists.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
-            {/* Without Buffer */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem" }}>
+
+            {/* ── WITHOUT BUFFER ─────────────────── */}
             <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.25rem" }}>
-                <span style={{ display: "inline-block", width: "8px", height: "8px", backgroundColor: "rgba(255,80,80,0.55)", borderRadius: "50%", flexShrink: 0 }} />
-                <p style={{ fontFamily: "'Raleway', sans-serif", fontSize: "0.95rem", fontWeight: 300, color: "#f5f2ed", letterSpacing: "0.03em", margin: 0 }}>Without a Buffer</p>
+              {/* Title */}
+              <p style={{
+                fontFamily: "'Raleway', sans-serif",
+                fontSize: "1rem", fontWeight: 300,
+                color: "#f5f2ed", letterSpacing: "0.03em",
+                marginBottom: "1rem",
+              }}>
+                Without a Buffer
+              </p>
+
+              {/* Legend */}
+              <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1.25rem" }}>
+                <span style={{ display: "inline-block", width: "24px", height: "1.5px", backgroundColor: "rgba(255,255,255,0.65)", flexShrink: 0 }} />
+                <span className="label" style={{ color: "#9a9690" }}>Portfolio balance</span>
+                <span style={{ marginLeft: "1rem", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "rgba(255,80,80,0.7)", flexShrink: 0 }} />
+                  <span className="label" style={{ color: "#9a9690" }}>Forced withdrawal in down year</span>
+                </span>
               </div>
-              <div className="glass" style={{ padding: "2rem 2.5rem 1.25rem", aspectRatio: "340/240" }}>
+
+              {/* Chart */}
+              <div className="glass" style={{ padding: "1.5rem 0.5rem 0.75rem 0" }}>
                 <WithoutBufferDiagram />
               </div>
-              <p className="body-sm" style={{ marginTop: "1.25rem", paddingLeft: "0.5rem" }}>
-                Income is taken from the portfolio during market downturns. Each withdrawal at depressed prices locks in permanent losses — and recovery becomes increasingly unlikely. The portfolio is depleted by year 13–14.
+
+              {/* Caption */}
+              <p className="body-sm" style={{ marginTop: "1.25rem", color: "#b8b4ae" }}>
+                Every down year forces an income withdrawal at depressed prices — locking in permanent losses. Each down cycle starts from a weaker base. The portfolio is depleted by <strong style={{ color: "#f5f2ed", fontWeight: 400 }}>year 13</strong>.
               </p>
             </div>
 
-            {/* With Buffer */}
+            {/* ── WITH BUFFER ────────────────────── */}
             <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.25rem" }}>
-                <span style={{ display: "inline-block", width: "8px", height: "8px", backgroundColor: "#638479", borderRadius: "50%", flexShrink: 0 }} />
-                <p style={{ fontFamily: "'Raleway', sans-serif", fontSize: "0.95rem", fontWeight: 300, color: "#f5f2ed", letterSpacing: "0.03em", margin: 0 }}>With a Buffer</p>
+              {/* Title */}
+              <p style={{
+                fontFamily: "'Raleway', sans-serif",
+                fontSize: "1rem", fontWeight: 300,
+                color: "#f5f2ed", letterSpacing: "0.03em",
+                marginBottom: "1rem",
+              }}>
+                With a Buffer
+              </p>
+
+              {/* Legend */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem 1.25rem", marginBottom: "1.25rem", alignItems: "center" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ display: "inline-block", width: "24px", height: "1.5px", backgroundColor: "rgba(255,255,255,0.65)", flexShrink: 0 }} />
+                  <span className="label" style={{ color: "#9a9690" }}>Portfolio balance</span>
+                </span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                  <svg width="24" height="6" viewBox="0 0 24 6" aria-hidden="true">
+                    <line x1="0" y1="3" x2="24" y2="3" stroke="#638479" strokeWidth="1.5" strokeDasharray="4 3" />
+                  </svg>
+                  <span className="label" style={{ color: "#638479" }}>Buffer account ($360k)</span>
+                </span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#638479", flexShrink: 0 }} />
+                  <span className="label" style={{ color: "#9a9690" }}>Income drawn from buffer</span>
+                </span>
               </div>
-              <div className="glass" style={{ padding: "2rem 2.5rem 1.25rem", aspectRatio: "340/240" }}>
+
+              {/* Chart */}
+              <div className="glass" style={{ padding: "1.5rem 0.5rem 0.75rem 0" }}>
                 <WithBufferDiagram />
               </div>
-              <p className="body-sm" style={{ marginTop: "1.25rem", paddingLeft: "0.5rem" }}>
-                Income is drawn from the buffer during down years. The portfolio is left untouched — free to recover at its natural pace. The result: a portfolio that remains healthy 16+ years into retirement.
+
+              {/* Caption */}
+              <p className="body-sm" style={{ marginTop: "1.25rem", color: "#b8b4ae" }}>
+                Down years draw income from the buffer — not the portfolio. The portfolio only absorbs the market loss, then recovers fully on each up year. At year 15, it still holds <strong style={{ color: "#f5f2ed", fontWeight: 400 }}>$113k</strong> — two full years past when the unbuffered portfolio ran out.
               </p>
             </div>
           </div>
 
-          <p className="body-sm" style={{ marginTop: "2rem", color: "#6a6760", textAlign: "center", fontSize: "0.7rem" }}>
-            Illustrative only. Not a guarantee of future performance. Results vary based on individual circumstances.
+          <p style={{ marginTop: "2.5rem", color: "#6a6760", textAlign: "center", fontSize: "0.68rem", fontFamily: "'Inter', sans-serif", letterSpacing: "0.06em" }}>
+            Illustrative only. Assumes $1M start, $60k/year income, +12% up years, −25% down years. Not a projection or guarantee of future results.
           </p>
         </ScrollReveal>
       </section>

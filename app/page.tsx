@@ -1,8 +1,8 @@
 import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import FlashlightCard from "@/components/FlashlightCard";
-import VaultRingsHero from "@/components/VaultRingsHero";
-import LifeConvergence from "@/components/LifeConvergence";
+import GrowthFieldHero from "@/components/GrowthFieldHero";
+import CashValueCurve from "@/components/CashValueCurve";
 import Marquee from "@/components/Marquee";
 import { MountainCtaBg } from "@/components/MountainCta";
 import { ScanLine } from "@/components/SectionBg";
@@ -22,7 +22,7 @@ export default function HomePage() {
         justifyContent: "center",
         paddingTop: "5rem",
       }}>
-        <VaultRingsHero />
+        <GrowthFieldHero />
         <ScanLine duration="14s" />
 
         {/* Corner markers */}
@@ -71,36 +71,6 @@ export default function HomePage() {
 
       {/* ── MARQUEE TICKER ───────────────────────────────────── */}
       <Marquee />
-
-      {/* ── STATS BAR ────────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#050505", padding: "0" }}>
-        <div className="container-site">
-          <div
-            className="glass"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}
-          >
-            {[
-              { value: "2.8%",   label: "Current safe withdrawal rate" },
-              { value: "→ 8%",   label: "With a SAFE Account" },
-              { value: "6 yr",   label: "Target buffer duration" },
-            ].map((stat, i) => (
-              <div
-                key={stat.label}
-                style={{
-                  textAlign: "center",
-                  padding: "2.5rem 1rem",
-                  borderRight: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                }}
-              >
-                <div className="stat-value">{stat.value}</div>
-                <p className="label" style={{ marginTop: "0.625rem", color: "#9a9690" }}>
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── WHAT WE DO ───────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
@@ -200,8 +170,38 @@ export default function HomePage() {
             </ScrollReveal>
 
             <div style={{ display: "flex", alignSelf: "stretch", minHeight: "480px" }}>
-              <LifeConvergence />
+              <CashValueCurve />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATS BAR ────────────────────────────────────────── */}
+      <section style={{ backgroundColor: "#050505", padding: "0 0 1px" }}>
+        <div className="container-site">
+          <div
+            className="glass"
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}
+          >
+            {[
+              { value: "2.8%", label: "Current safe withdrawal rate" },
+              { value: "→ 8%", label: "With a SAFE Account" },
+              { value: "6 yr", label: "Target buffer duration" },
+            ].map((stat, i) => (
+              <div
+                key={stat.label}
+                style={{
+                  textAlign: "center",
+                  padding: "2.5rem 1rem",
+                  borderRight: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                }}
+              >
+                <div className="stat-value">{stat.value}</div>
+                <p className="label" style={{ marginTop: "0.625rem", color: "#9a9690" }}>
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
