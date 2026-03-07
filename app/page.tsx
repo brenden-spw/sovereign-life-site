@@ -1,8 +1,8 @@
 import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import FlashlightCard from "@/components/FlashlightCard";
-import ParticleNetwork from "@/components/ParticleNetwork";
-import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import VaultRingsHero from "@/components/VaultRingsHero";
+import { ScanLine } from "@/components/SectionBg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function HomePage() {
@@ -19,14 +19,14 @@ export default function HomePage() {
         justifyContent: "center",
         paddingTop: "5rem",
       }}>
-        <ParticleNetwork config={{ count: 65, speed: 0.2, threshold: 140, opacity: 1, mouseEffect: true, upwardBias: 0.42 }} />
-        <AmbientOrbs variant="a" />
+        <VaultRingsHero />
         <ScanLine duration="14s" />
 
+        {/* Corner markers */}
         {[
-          { style: { top: "1.5rem", left: "1.5rem" },   d: "M0 10 L0 0 L10 0"    },
-          { style: { top: "1.5rem", right: "1.5rem" },  d: "M16 10 L16 0 L6 0"   },
-          { style: { bottom: "1.5rem", left: "1.5rem" }, d: "M0 6 L0 16 L10 16"  },
+          { style: { top: "1.5rem", left: "1.5rem" },    d: "M0 10 L0 0 L10 0"    },
+          { style: { top: "1.5rem", right: "1.5rem" },   d: "M16 10 L16 0 L6 0"   },
+          { style: { bottom: "1.5rem", left: "1.5rem" }, d: "M0 6 L0 16 L10 16"   },
           { style: { bottom: "1.5rem", right: "1.5rem" }, d: "M16 6 L16 16 L6 16" },
         ].map((c, i) => (
           <svg key={i} aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"
@@ -60,18 +60,15 @@ export default function HomePage() {
           </p>
 
           <div className="animate-in animate-in-delay-3" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <Link href="/contact" className="btn-primary">Get in Touch</Link>
+            <Link href="/get-started" className="btn-primary">Book a Free Call</Link>
             <Link href="/services" className="btn-ghost">Our Services</Link>
           </div>
         </div>
       </section>
 
       {/* ── WHAT WE DO ───────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 38, speed: 0.15, threshold: 120, opacity: 0.65, upwardBias: 0.38 }} />
-        <AmbientOrbs variant="b" />
-
-        <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
+        <div className="container-site">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>What We Do</p>
@@ -105,11 +102,8 @@ export default function HomePage() {
       </section>
 
       {/* ── THE FIRM ─────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#070707", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 28, speed: 0.13, threshold: 110, opacity: 0.5, upwardBias: 0.35 }} />
-        <AmbientOrbs variant="c" />
-
-        <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#070707" }}>
+        <div className="container-site">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>The Firm</p>
@@ -144,10 +138,8 @@ export default function HomePage() {
       </section>
 
       {/* ── APPROACH ─────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#050505", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 28, speed: 0.14, threshold: 115, opacity: 0.5, upwardBias: 0.35 }} />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#050505" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
           <FlashlightCard className="beam-border" style={{ padding: "4rem", backgroundColor: "#111111", borderRadius: "2px" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
               <div>
@@ -172,14 +164,15 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 20, speed: 0.11, threshold: 100, opacity: 0.38, upwardBias: 0.3 }} />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
-          <p className="label" style={{ marginBottom: "1.25rem" }}>Contact</p>
+      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center" }}>
+          <p className="label" style={{ marginBottom: "1.25rem" }}>Begin</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>Start with a conversation.</h2>
           <p className="body-lg" style={{ marginBottom: "2.5rem" }}>If you're evaluating coverage or want to understand how a policy might fit your specific situation, we're happy to talk through it.</p>
-          <Link href="/contact" className="btn-primary">Get in Touch</Link>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <Link href="/get-started" className="btn-primary">Book a Free Call</Link>
+            <Link href="/contact" className="btn-ghost">Get in Touch</Link>
+          </div>
         </ScrollReveal>
       </section>
     </>

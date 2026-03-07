@@ -1,5 +1,4 @@
-import ParticleNetwork from "@/components/ParticleNetwork";
-import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import { ScanLine } from "@/components/SectionBg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function GetStartedPage() {
@@ -7,9 +6,20 @@ export default function GetStartedPage() {
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: "#050505", paddingTop: "12rem", paddingBottom: "6rem", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 55, speed: 0.18, threshold: 135, opacity: 0.9, mouseEffect: true, upwardBias: 0.42 }} />
-        <AmbientOrbs variant="a" />
         <ScanLine duration="14s" />
+
+        {/* Corner markers */}
+        {[
+          { style: { top: "1.5rem", left: "1.5rem" },    d: "M0 10 L0 0 L10 0"    },
+          { style: { top: "1.5rem", right: "1.5rem" },   d: "M16 10 L16 0 L6 0"   },
+          { style: { bottom: "1.5rem", left: "1.5rem" }, d: "M0 6 L0 16 L10 16"   },
+          { style: { bottom: "1.5rem", right: "1.5rem" }, d: "M16 6 L16 16 L6 16" },
+        ].map((c, i) => (
+          <svg key={i} aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"
+            style={{ position: "absolute", opacity: 0.22, pointerEvents: "none", ...c.style }}>
+            <path d={c.d} fill="none" stroke="#818D8D" strokeWidth="1" />
+          </svg>
+        ))}
 
         <div className="container-site" style={{ maxWidth: "700px", position: "relative", zIndex: 2 }}>
           <p className="label animate-in" style={{ marginBottom: "1rem" }}>Get Started</p>
@@ -23,11 +33,8 @@ export default function GetStartedPage() {
       </section>
 
       {/* ── WHAT TO EXPECT ───────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 35, speed: 0.14, threshold: 118, opacity: 0.55, upwardBias: 0.38 }} />
-        <AmbientOrbs variant="b" />
-
-        <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
+        <div className="container-site">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>What to Expect</p>
@@ -78,11 +85,8 @@ export default function GetStartedPage() {
       </section>
 
       {/* ── BOOKING ──────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#070707", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 28, speed: 0.13, threshold: 110, opacity: 0.48, upwardBias: 0.35 }} />
-        <AmbientOrbs variant="c" />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "760px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#070707" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "760px", margin: "0 auto" }}>
           <p className="label" style={{ marginBottom: "0.875rem", textAlign: "center" }}>Schedule Your Call</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "3.5rem", textAlign: "center" }}>
             Choose a time that works for you.
@@ -93,30 +97,31 @@ export default function GetStartedPage() {
             style={{
               padding: "4rem",
               textAlign: "center",
-              minHeight: "400px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
-              gap: "1.5rem",
+              gap: "1.75rem",
             }}
           >
-            <p className="label" style={{ color: "#638479" }}>Scheduling</p>
+            <p className="label" style={{ color: "#638479" }}>Free SAFE Method Strategy Call</p>
             <p className="body-lg" style={{ maxWidth: "440px" }}>
-              Add your Calendly or scheduling link here. This section will display your live booking calendar.
+              30–45 minutes. We'll run the numbers with you, answer your questions, and show you a clear before-and-after — no obligation.
             </p>
-            <p className="body-sm" style={{ color: "#6a6760" }}>
-              yoursafemethod.com/start
-            </p>
+            <a
+              href="https://calendar.app.google/qWDAQ1Af6VZSWcV56"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              Book Your Free Call
+            </a>
           </div>
         </ScrollReveal>
       </section>
 
       {/* ── REASSURANCE ──────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#050505", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 20, speed: 0.11, threshold: 100, opacity: 0.38, upwardBias: 0.3 }} />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#050505" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
             {[
               {

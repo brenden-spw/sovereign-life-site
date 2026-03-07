@@ -1,6 +1,6 @@
 import Link from "next/link";
-import ParticleNetwork from "@/components/ParticleNetwork";
-import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import DampenedWave from "@/components/DampenedWave";
+import { ScanLine } from "@/components/SectionBg";
 import Accordion from "@/components/Accordion";
 import Tooltip from "@/components/Tooltip";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -38,9 +38,21 @@ export default function TheSafeMethodPage() {
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: "#050505", paddingTop: "12rem", paddingBottom: "6rem", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 55, speed: 0.18, threshold: 135, opacity: 0.9, mouseEffect: true, upwardBias: 0.42 }} />
-        <AmbientOrbs variant="a" />
+        <DampenedWave />
         <ScanLine duration="14s" />
+
+        {/* Corner markers */}
+        {[
+          { style: { top: "1.5rem", left: "1.5rem" },    d: "M0 10 L0 0 L10 0"    },
+          { style: { top: "1.5rem", right: "1.5rem" },   d: "M16 10 L16 0 L6 0"   },
+          { style: { bottom: "1.5rem", left: "1.5rem" }, d: "M0 6 L0 16 L10 16"   },
+          { style: { bottom: "1.5rem", right: "1.5rem" }, d: "M16 6 L16 16 L6 16" },
+        ].map((c, i) => (
+          <svg key={i} aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"
+            style={{ position: "absolute", opacity: 0.22, pointerEvents: "none", ...c.style }}>
+            <path d={c.d} fill="none" stroke="#818D8D" strokeWidth="1" />
+          </svg>
+        ))}
 
         <div className="container-site" style={{ maxWidth: "800px", position: "relative", zIndex: 2 }}>
           <p className="label animate-in" style={{ marginBottom: "1rem" }}>The SAFE Method</p>
@@ -54,11 +66,8 @@ export default function TheSafeMethodPage() {
       </section>
 
       {/* ── THE RETIREMENT CRISIS ────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 38, speed: 0.15, threshold: 120, opacity: 0.6, upwardBias: 0.38 }} />
-        <AmbientOrbs variant="b" />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>The Retirement Crisis</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "2rem" }}>The rules changed. Most people don't know.</h2>
           <p className="body-lg" style={{ marginBottom: "1.5rem" }}>
@@ -92,10 +101,8 @@ export default function TheSafeMethodPage() {
       </section>
 
       {/* ── 3 REASONS ────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#070707", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 28, speed: 0.13, threshold: 110, opacity: 0.5, upwardBias: 0.35 }} />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#070707" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>Why Volatility Is So Destructive</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "3.5rem" }}>Three reasons volatility destroys retirement income.</h2>
 
@@ -130,11 +137,8 @@ export default function TheSafeMethodPage() {
       </section>
 
       {/* ── THE VOLATILITY BUFFER ────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#050505", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 32, speed: 0.14, threshold: 115, opacity: 0.52, upwardBias: 0.38 }} />
-        <AmbientOrbs variant="c" />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#050505" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>The Solution</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "2rem" }}>A volatility buffer changes everything.</h2>
           <p className="body-lg" style={{ marginBottom: "1.5rem" }}>
@@ -157,10 +161,8 @@ export default function TheSafeMethodPage() {
       </section>
 
       {/* ── WHY WHOLE LIFE ───────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 28, speed: 0.13, threshold: 110, opacity: 0.48, upwardBias: 0.35 }} />
-
-        <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
+        <div className="container-site">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>The SAFE Account</p>
@@ -183,11 +185,8 @@ export default function TheSafeMethodPage() {
       </section>
 
       {/* ── FUNDING ──────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#070707", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 25, speed: 0.12, threshold: 105, opacity: 0.44, upwardBias: 0.32 }} />
-        <AmbientOrbs variant="b" />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#070707" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>Funding the SAFE Account</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>The right approach depends on where you are.</h2>
           <p className="body-lg" style={{ marginBottom: "3.5rem" }}>The goal is 6 years of your target retirement income sitting in your SAFE Account. How you get there depends on your timeline.</p>
@@ -216,10 +215,8 @@ export default function TheSafeMethodPage() {
       </section>
 
       {/* ── FAQ ──────────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 22, speed: 0.12, threshold: 102, opacity: 0.42, upwardBias: 0.32 }} />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
           <p className="label" style={{ marginBottom: "0.875rem" }}>Common Questions</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "3.5rem" }}>What people typically want to know.</h2>
           <Accordion items={faqItems} />
@@ -227,15 +224,15 @@ export default function TheSafeMethodPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#050505", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 20, speed: 0.11, threshold: 100, opacity: 0.38, upwardBias: 0.3 }} />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#050505" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto" }}>
           <div className="glass" style={{ padding: "4rem", textAlign: "center" }}>
             <p className="label" style={{ marginBottom: "1.25rem" }}>Next Step</p>
             <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>Run your numbers with us.</h2>
             <p className="body-lg" style={{ marginBottom: "2.5rem" }}>Book a free SAFE Method strategy call. We'll build a custom retirement income simulation using your actual numbers. No obligation.</p>
-            <Link href="/contact" className="btn-primary">Book a Free Call</Link>
+            <a href="https://calendar.app.google/qWDAQ1Af6VZSWcV56" target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Book a Free Call
+            </a>
           </div>
         </ScrollReveal>
       </section>

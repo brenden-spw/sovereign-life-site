@@ -1,5 +1,4 @@
-import ParticleNetwork from "@/components/ParticleNetwork";
-import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import { ScanLine } from "@/components/SectionBg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ContactPage() {
@@ -7,9 +6,20 @@ export default function ContactPage() {
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: "#050505", paddingTop: "12rem", paddingBottom: "6rem", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 55, speed: 0.18, threshold: 135, opacity: 0.9, mouseEffect: true, upwardBias: 0.42 }} />
-        <AmbientOrbs variant="a" />
         <ScanLine duration="14s" />
+
+        {/* Corner markers */}
+        {[
+          { style: { top: "1.5rem", left: "1.5rem" },    d: "M0 10 L0 0 L10 0"    },
+          { style: { top: "1.5rem", right: "1.5rem" },   d: "M16 10 L16 0 L6 0"   },
+          { style: { bottom: "1.5rem", left: "1.5rem" }, d: "M0 6 L0 16 L10 16"   },
+          { style: { bottom: "1.5rem", right: "1.5rem" }, d: "M16 6 L16 16 L6 16" },
+        ].map((c, i) => (
+          <svg key={i} aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"
+            style={{ position: "absolute", opacity: 0.22, pointerEvents: "none", ...c.style }}>
+            <path d={c.d} fill="none" stroke="#818D8D" strokeWidth="1" />
+          </svg>
+        ))}
 
         <div className="container-site" style={{ maxWidth: "700px", position: "relative", zIndex: 2 }}>
           <p className="label animate-in" style={{ marginBottom: "1rem" }}>Contact</p>
@@ -23,11 +33,8 @@ export default function ContactPage() {
       </section>
 
       {/* ── CONTACT OPTIONS ──────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 35, speed: 0.14, threshold: 118, opacity: 0.55, upwardBias: 0.38 }} />
-        <AmbientOrbs variant="b" />
-
-        <div className="container-site" style={{ position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
+        <div className="container-site">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
 
             <ScrollReveal>
@@ -44,18 +51,24 @@ export default function ContactPage() {
                 style={{
                   padding: "3rem",
                   textAlign: "center",
-                  minHeight: "300px",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  justifyContent: "center",
                   gap: "1.5rem",
                 }}
               >
-                <p className="label" style={{ color: "#638479" }}>Scheduling</p>
+                <p className="label" style={{ color: "#638479" }}>Free Strategy Call</p>
                 <p className="body-sm" style={{ maxWidth: "320px" }}>
-                  Add your scheduling link or Calendly embed here.
+                  We'll map your current situation, answer your questions, and show you what's possible — before making any recommendations.
                 </p>
+                <a
+                  href="https://calendar.app.google/qWDAQ1Af6VZSWcV56"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                >
+                  Book a Time
+                </a>
               </div>
             </ScrollReveal>
 
@@ -70,9 +83,9 @@ export default function ContactPage() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
                 {[
-                  { label: "General Inquiries", value: "info@sovereignlife.com" },
-                  { label: "Carson Herlean", value: "carson@sovereignlife.com" },
-                  { label: "Bradley Gibb", value: "bradley@sovereignlife.com" },
+                  { label: "General Inquiries", value: "team@svrn.life", href: "mailto:team@svrn.life" },
+                  { label: "Carson Herlean",    value: "carson@svrn.life", href: "mailto:carson@svrn.life" },
+                  { label: "Bradley Gibb",      value: "brad@svrn.life", href: "mailto:brad@svrn.life" },
                 ].map((item, i) => (
                   <div
                     key={item.label}
@@ -83,13 +96,15 @@ export default function ContactPage() {
                     }}
                   >
                     <p className="label" style={{ marginBottom: "0.5rem" }}>{item.label}</p>
-                    <p className="body-sm" style={{ color: "#D3CFC3", margin: 0 }}>{item.value}</p>
+                    <a href={item.href} style={{ color: "#D3CFC3", fontSize: "0.875rem", textDecoration: "none" }}>
+                      {item.value}
+                    </a>
                   </div>
                 ))}
               </div>
 
               <p className="body-sm" style={{ marginTop: "2rem", color: "#6a6760" }}>
-                Sovereign Life is licensed in [states]. All inquiries are handled directly by a licensed professional.
+                All inquiries are handled directly by a licensed insurance professional.
               </p>
             </ScrollReveal>
 

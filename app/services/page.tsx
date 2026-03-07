@@ -1,6 +1,5 @@
 import Link from "next/link";
-import ParticleNetwork from "@/components/ParticleNetwork";
-import { AmbientOrbs, ScanLine } from "@/components/SectionBg";
+import { ScanLine } from "@/components/SectionBg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ServicesPage() {
@@ -8,9 +7,20 @@ export default function ServicesPage() {
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: "#050505", paddingTop: "12rem", paddingBottom: "6rem", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 55, speed: 0.18, threshold: 135, opacity: 0.9, mouseEffect: true, upwardBias: 0.42 }} />
-        <AmbientOrbs variant="a" />
         <ScanLine duration="14s" />
+
+        {/* Corner markers */}
+        {[
+          { style: { top: "1.5rem", left: "1.5rem" },    d: "M0 10 L0 0 L10 0"    },
+          { style: { top: "1.5rem", right: "1.5rem" },   d: "M16 10 L16 0 L6 0"   },
+          { style: { bottom: "1.5rem", left: "1.5rem" }, d: "M0 6 L0 16 L10 16"   },
+          { style: { bottom: "1.5rem", right: "1.5rem" }, d: "M16 6 L16 16 L6 16" },
+        ].map((c, i) => (
+          <svg key={i} aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"
+            style={{ position: "absolute", opacity: 0.22, pointerEvents: "none", ...c.style }}>
+            <path d={c.d} fill="none" stroke="#818D8D" strokeWidth="1" />
+          </svg>
+        ))}
 
         <div className="container-site" style={{ maxWidth: "800px", position: "relative", zIndex: 2 }}>
           <p className="label animate-in" style={{ marginBottom: "1rem" }}>Services</p>
@@ -24,11 +34,8 @@ export default function ServicesPage() {
       </section>
 
       {/* ── SERVICES LIST ────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 35, speed: 0.14, threshold: 115, opacity: 0.55, upwardBias: 0.38 }} />
-        <AmbientOrbs variant="b" />
-
-        <div className="container-site" style={{ maxWidth: "860px", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
+        <div className="container-site" style={{ maxWidth: "860px" }}>
           <div style={{ display: "flex", flexDirection: "column" }}>
             {[
               {
@@ -95,14 +102,15 @@ export default function ServicesPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#070707", position: "relative", overflow: "hidden" }}>
-        <ParticleNetwork config={{ count: 20, speed: 0.11, threshold: 100, opacity: 0.38, upwardBias: 0.3 }} />
-
-        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center", position: "relative", zIndex: 2 }}>
+      <section className="section" style={{ backgroundColor: "#070707" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center" }}>
           <p className="label" style={{ marginBottom: "1.25rem" }}>Next Step</p>
           <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>Start with a conversation.</h2>
           <p className="body-lg" style={{ marginBottom: "2.5rem" }}>If you have a specific need or just want to understand what's possible, we're happy to talk through it — no pressure, no pitch.</p>
-          <Link href="/contact" className="btn-primary">Get in Touch</Link>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <a href="https://calendar.app.google/qWDAQ1Af6VZSWcV56" target="_blank" rel="noopener noreferrer" className="btn-primary">Book a Free Call</a>
+            <Link href="/contact" className="btn-ghost">Get in Touch</Link>
+          </div>
         </ScrollReveal>
       </section>
     </>
