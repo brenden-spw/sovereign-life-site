@@ -203,7 +203,7 @@ export default function TheSafeMethodPage() {
 
               {/* Caption */}
               <p className="body-sm" style={{ marginTop: "1.25rem", color: "#b8b4ae" }}>
-                Every down year forces an income withdrawal at depressed prices — locking in permanent losses. Each down cycle starts from a weaker base. The portfolio is depleted by <strong style={{ color: "#f5f2ed", fontWeight: 400 }}>year 13</strong>.
+                Income is taken from the portfolio every year — including during the 6 down years when markets are off 25%. Each withdrawal at depressed prices locks in losses permanently. By year 13, the portfolio is at <strong style={{ color: "#f5f2ed", fontWeight: 400 }}>$0</strong>.
               </p>
             </div>
 
@@ -244,7 +244,7 @@ export default function TheSafeMethodPage() {
 
               {/* Caption */}
               <p className="body-sm" style={{ marginTop: "1.25rem", color: "#b8b4ae" }}>
-                Down years draw income from the buffer — not the portfolio. The portfolio only absorbs the market loss, then recovers fully on each up year. At year 15, it still holds <strong style={{ color: "#f5f2ed", fontWeight: 400 }}>$113k</strong> — two full years past when the unbuffered portfolio ran out.
+                The 6 down years draw $60k each from the buffer — which is why the buffer reaches $0 at year 13 (6 years × $60k = $360k total). But the portfolio is untouched during those years, so it still holds <strong style={{ color: "#f5f2ed", fontWeight: 400 }}>$191k at year 13</strong> — versus $0 in the scenario without a buffer. The portfolio continues to year 15 and beyond.
               </p>
             </div>
           </div>

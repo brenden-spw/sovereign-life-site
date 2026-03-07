@@ -1,7 +1,7 @@
 import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import FlashlightCard from "@/components/FlashlightCard";
-import GrowthFieldHero from "@/components/GrowthFieldHero";
+import RadialLineHero from "@/components/RadialLineHero";
 import CashValueCurve from "@/components/CashValueCurve";
 import Marquee from "@/components/Marquee";
 import { MountainCtaBg } from "@/components/MountainCta";
@@ -22,7 +22,7 @@ export default function HomePage() {
         justifyContent: "center",
         paddingTop: "5rem",
       }}>
-        <GrowthFieldHero />
+        <RadialLineHero />
         <ScanLine duration="14s" />
 
         {/* Corner markers */}
@@ -169,15 +169,25 @@ export default function HomePage() {
               <Link href="/services" className="btn-ghost">View Our Services</Link>
             </ScrollReveal>
 
-            <div style={{ display: "flex", alignSelf: "stretch", minHeight: "480px" }}>
-              <CashValueCurve />
+            <div style={{ display: "flex", flexDirection: "column", alignSelf: "stretch", minHeight: "480px" }}>
+              <div style={{ flex: 1 }}>
+                <CashValueCurve />
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem 1.5rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                {["Guaranteed", "Tax-Free Access", "Non-Correlated", "Liquid"].map((attr) => (
+                  <span key={attr} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "#638479", flexShrink: 0 }} />
+                    <span className="label" style={{ color: "#9a9690" }}>{attr}</span>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── STATS BAR ────────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#050505", padding: "0 0 1px" }}>
+      <section style={{ backgroundColor: "#050505", padding: "4rem 0", borderTop: "1px solid rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
         <div className="container-site">
           <div
             className="glass"

@@ -270,3 +270,9 @@ details summary::-webkit-details-marker { display: none; }
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+
+/* Alternating opacity breathe for radial ray groups */
+@keyframes ray-breathe {
+  0%, 100% { opacity: 1;   }
+  50%       { opacity: 0.5; }
+}
