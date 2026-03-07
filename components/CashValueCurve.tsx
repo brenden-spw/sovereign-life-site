@@ -4,56 +4,65 @@ import { useEffect, useRef, useState } from "react";
 // Scroll-animated whole life policy illustration.
 //
 // What it shows:
-//   White flat line  = Death Benefit (guaranteed face amount — stays constant)
-//   Olive curve      = Cash Value (grows from near $0 at Yr 1 → converges to
-//                      death benefit by Yr 30 as the policy matures)
+//   White rising curve = Death Benefit (starts at $1M face, grows via dividends
+//                        and paid-up additions to ~$1.15M by Yr 30)
+//   Olive rising curve = Cash Value (grows from ~$40k at Yr 1 → ~$750k at Yr 30,
+//                        reaching ~65% of death benefit as the policy matures)
 //
-// The gap between them = "Pure Insurance" element, which shrinks over time as
-// your accumulated capital takes over more of the policy's total value.
+// The gap between them = "pure insurance" element, which shrinks over time.
 //
-// Data anchors (based on typical whole life policy designed for cash accumulation):
-//   Yr  1: CSV ≈  5% of death benefit  →  y = 258  (x = 52)
-//   Yr  8: CSV ≈ 40% of death benefit  →  y = 174  (x = 155)
-//   Yr 15: CSV ≈ 65% of death benefit  →  y = 114  (x = 258)
-//   Yr 22: CSV ≈ 85% of death benefit  →  y =  66  (x = 361)
-//   Yr 30: CSV ≈100% of death benefit  →  y =  30  (x = 478)
+// Data anchors (normalized, typical participating whole life with PUAs):
+//   Yr  1: DB ≈ $1.00M  CV ≈  $40k  (~4% of DB)
+//   Yr  8: DB ≈ $1.04M  CV ≈ $200k  (~19% of DB)
+//   Yr 15: DB ≈ $1.08M  CV ≈ $400k  (~37% of DB)
+//   Yr 22: DB ≈ $1.12M  CV ≈ $570k  (~51% of DB)
+//   Yr 30: DB ≈ $1.15M  CV ≈ $750k  (~65% of DB)
 //
 // Chart geometry:
 //   viewBox  500 × 320
-//   Y-axis   x = 52     ($0 at y=270, $1M at y=30, scale: 240px / $1M)
-//   X-axis   y = 270    (Yr 1 at x=52, Yr 30 at x=478)
+//   Y-axis   x = 52    ($0 at y=270, $1.2M at y=30, scale: 240px / $1.2M)
+//   X-axis   y = 270   (Yr 1 at x=52, Yr 30 at x=478)
 //   Chart area x=[52,478], y=[30,270]
 
-const DB_PATH = "M 52,30 L 478,30";
+// Death benefit: gentle rising curve from $1M (y=70) to $1.15M (y=40)
+const DB_PATH =
+  "M 52,70 C 90,69 130,63 155,62 " +
+  "C 185,61 230,55 258,54 " +
+  "C 294,53 332,49 361,48 " +
+  "C 400,46 444,41 478,40";
 
-// Multi-segment cubic bezier passing through the data anchors above
+// Cash value: steeper rising curve from $40k (y=262) to $750k (y=120)
 const CV_PATH =
-  "M 52,258 C 90,255 130,205 155,174 " +
-  "C 185,143 225,124 258,114 " +
-  "C 294,104 332,82 361,66 " +
-  "C 394,48 440,33 478,30";
+  "M 52,262 C 90,258 128,234 155,230 " +
+  "C 185,225 225,195 258,190 " +
+  "C 294,185 330,158 361,154 " +
+  "C 400,148 442,123 478,120";
 
 // Fill area under cash value (olive tint = "your capital")
 const CV_AREA =
-  "M 52,258 C 90,255 130,205 155,174 " +
-  "C 185,143 225,124 258,114 " +
-  "C 294,104 332,82 361,66 " +
-  "C 394,48 440,33 478,30 L 478,270 L 52,270 Z";
+  "M 52,262 C 90,258 128,234 155,230 " +
+  "C 185,225 225,195 258,190 " +
+  "C 294,185 330,158 361,154 " +
+  "C 400,148 442,123 478,120 L 478,270 L 52,270 Z";
 
-// Fill area between DB and CV (white tint = "insurance cost")
+// Gap area: DB path forward → connect to CV end → reverse CV path → close
 const GAP_AREA =
-  "M 52,30 L 478,30 " +
-  "C 440,33 394,48 361,66 " +
-  "C 332,82 294,104 258,114 " +
-  "C 225,124 185,143 155,174 " +
-  "C 130,205 90,255 52,258 Z";
+  "M 52,70 C 90,69 130,63 155,62 " +
+  "C 185,61 230,55 258,54 " +
+  "C 294,53 332,49 361,48 " +
+  "C 400,46 444,41 478,40 " +
+  "L 478,120 " +
+  "C 442,123 400,148 361,154 " +
+  "C 330,158 294,185 258,190 " +
+  "C 225,195 185,225 155,230 " +
+  "C 128,234 90,258 52,262 Z";
 
-// Y-axis grid lines and labels
+// Y-axis grid lines and labels ($1.2M scale, 240px / $1.2M)
 const Y_TICKS = [
-  { y: 30,  label: "$1M"   },
-  { y: 90,  label: "$750k" },
-  { y: 150, label: "$500k" },
-  { y: 210, label: "$250k" },
+  { y: 30,  label: "$1.2M" },
+  { y: 90,  label: "$900k" },
+  { y: 150, label: "$600k" },
+  { y: 210, label: "$300k" },
   { y: 270, label: "$0"    },
 ];
 
@@ -66,11 +75,11 @@ const X_TICKS = [
   { x: 478, label: "Yr 30" },
 ];
 
-// "TODAY" marker sits at ~Yr 10 on the cash value curve.
-// Verified: second bezier segment (155,174)→(258,114), CP (185,143)(225,124).
-// At t=0.40 → x≈195, y≈142.
-const TODAY_X = 195;
-const TODAY_Y = 142;
+// "TODAY" marker sits at ~Yr 10 on the CV curve.
+// CV segment 2: (155,230)→(258,190), CPs (185,225)(225,195).
+// At t≈0.29 → x≈184, y≈220. Verified via cubic bezier evaluation.
+const TODAY_X = 184;
+const TODAY_Y = 220;
 
 export default function CashValueCurve() {
   const ref = useRef<HTMLDivElement>(null);
@@ -174,27 +183,27 @@ export default function CashValueCurve() {
         {/* ── LABELS (fade in after lines drawn) ─────────────── */}
         <g opacity={labelOp} style={{ transition: "opacity 0.2s linear" }}>
 
-          {/* Inline legend — top-left of chart area, well below the DB line (y=30)
-              and well above the CV curve at this x (~y=255). No overlap possible. */}
+          {/* Inline legend — top-left of chart area, above the DB line (y≈70 at this x).
+              DB line is at y≈70, so placing legend at y=36/52 gives clear separation. */}
           {/* Death benefit legend row */}
-          <line x1="60" y1="46" x2="80" y2="46"
+          <line x1="60" y1="36" x2="80" y2="36"
             stroke="rgba(255,255,255,0.5)" strokeWidth="1.3" />
-          <text x="85" y="50" fontSize="7"
+          <text x="85" y="40" fontSize="7"
             fill="rgba(255,255,255,0.5)"
             fontFamily="Inter, sans-serif" letterSpacing="0.12em">
             DEATH BENEFIT
           </text>
 
           {/* Cash value legend row */}
-          <line x1="60" y1="62" x2="80" y2="62"
+          <line x1="60" y1="52" x2="80" y2="52"
             stroke="#638479" strokeWidth="1.7" />
-          <text x="85" y="66" fontSize="7"
+          <text x="85" y="56" fontSize="7"
             fill="rgba(99,132,121,0.85)"
             fontFamily="Inter, sans-serif" letterSpacing="0.12em">
             CASH VALUE
           </text>
 
-          {/* TODAY marker — verified on curve at (195, 142) */}
+          {/* TODAY marker — verified on CV curve at (184, 220) */}
           <circle cx={TODAY_X} cy={TODAY_Y} r="3" fill="#638479" opacity="0.9" />
           <line
             x1={TODAY_X} y1={TODAY_Y - 5}
