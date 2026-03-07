@@ -1,7 +1,7 @@
 import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import FlashlightCard from "@/components/FlashlightCard";
-import RadialLineHero from "@/components/RadialLineHero";
+import FlowFieldHero from "@/components/FlowFieldHero";
 import CashValueCurve from "@/components/CashValueCurve";
 import Marquee from "@/components/Marquee";
 import { MountainCtaBg } from "@/components/MountainCta";
@@ -21,7 +21,7 @@ export default function HomePage() {
         justifyContent: "center",
         paddingTop: "5rem",
       }}>
-        <RadialLineHero />
+        <FlowFieldHero />
 
         {/* Corner markers */}
         {[
