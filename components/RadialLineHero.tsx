@@ -1,24 +1,38 @@
-// Hero background — 36 radial lines emanating from a focal point (upper-right).
-// Structured and precise: every 10°, not random. Two groups breathe out of phase
-// for a subtle living quality. Left-pointing rays are slightly brighter to draw
-// the eye toward the hero content.
+// Hero background — lines converging on an off-screen vanishing point (upper-right,
+// outside the SVG viewport). Within the visible frame they appear as structured
+// diagonal lines all pointing toward the same invisible destination.
+//
+// Design intent: conveys direction, precision, and long-term trajectory without
+// a visible "starburst" center. The source is implied, not shown.
 
-const FOCAL_X = 1085;
-const FOCAL_Y = 252;
-const LENGTH  = 1320;
-const N_RAYS  = 36;
+// Off-screen vanishing point — just outside the upper-right corner
+const VX = 1520;
+const VY = -118;
+const LEN = 2300; // long enough to cross the full viewport from any angle
 
-const RAYS = Array.from({ length: N_RAYS }, (_, i) => {
-  const angle  = (i / N_RAYS) * Math.PI * 2;
-  const cos    = Math.cos(angle);
-  const sin    = Math.sin(angle);
-  // Left-pointing rays (cos ≈ -1) are brighter; right-pointing (cos ≈ 1) dimmer
-  const opacity = Math.max(0.02, 0.068 - 0.04 * cos);
-  // Two rays get an olive accent (pointing toward lower-left, into content)
-  const olive   = i === 17 || i === 18; // ~170° and ~180°
+// Rays sweep from ~102° to ~176° (the angle range that intersects the 1400×600 viewport)
+// Higher angles point more left → slightly brighter (cross the content area)
+const N = 44;
+const START_DEG = 102;
+const END_DEG   = 176;
+
+const RAYS = Array.from({ length: N }, (_, i) => {
+  const t     = i / (N - 1);
+  const deg   = START_DEG + t * (END_DEG - START_DEG);
+  const rad   = deg * (Math.PI / 180);
+  const cos   = Math.cos(rad);
+  const sin   = Math.sin(rad);
+
+  // Opacity rises with angle (left-crossing rays slightly more visible)
+  const opacity = 0.026 + t * 0.062;
+
+  // Two olive accent rays around 148°–155° (crossing the lower content area)
+  const olive = i === 22 || i === 23;
+
+  // Alternate groups for phase-offset breathing
   return {
-    x2: +(FOCAL_X + cos * LENGTH).toFixed(1),
-    y2: +(FOCAL_Y + sin * LENGTH).toFixed(1),
+    x2: +(VX + cos * LEN).toFixed(1),
+    y2: +(VY + sin * LEN).toFixed(1),
     opacity,
     olive,
     group: i % 2,
@@ -39,79 +53,66 @@ export default function RadialLineHero() {
       aria-hidden="true"
     >
       <defs>
-        {/* Radial glow at the focal origin */}
-        <radialGradient
-          id="rlh-focal"
-          cx={`${(FOCAL_X / 1400) * 100}%`}
-          cy={`${(FOCAL_Y / 600) * 100}%`}
-          r="28%"
-        >
-          <stop offset="0%"   stopColor="rgba(255,255,255,0.07)" />
+        {/* Hint of the off-screen source — very subtle glow in the upper-right */}
+        <radialGradient id="rlh-source" cx="110%" cy="-18%" r="38%">
+          <stop offset="0%"   stopColor="rgba(255,255,255,0.055)" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
 
-        {/* Left fade — hero text lives here, keep dark */}
+        {/* Left fade — keeps hero text readable */}
         <linearGradient id="rlh-left" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stopColor="#050505" />
-          <stop offset="42%" stopColor="transparent" />
+          <stop offset="0%"  stopColor="#050505" />
+          <stop offset="40%" stopColor="transparent" />
         </linearGradient>
 
         {/* Bottom fade */}
-        <linearGradient id="rlh-bottom" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="55%" stopColor="transparent" />
+        <linearGradient id="rlh-btm" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="58%" stopColor="transparent" />
           <stop offset="100%" stopColor="#050505" />
         </linearGradient>
 
         {/* Top fade */}
         <linearGradient id="rlh-top" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#050505" />
-          <stop offset="20%" stopColor="transparent" />
+          <stop offset="0%"  stopColor="#050505" />
+          <stop offset="18%" stopColor="transparent" />
         </linearGradient>
       </defs>
 
-      {/* Ray group A — breathe phase 0 */}
-      <g style={{ animation: "ray-breathe 11s ease-in-out infinite" }}>
+      {/* Group A — breathe phase 0 */}
+      <g style={{ animation: "ray-breathe 12s ease-in-out infinite" }}>
         {groupA.map((r, i) => (
           <line
             key={i}
-            x1={FOCAL_X} y1={FOCAL_Y}
-            x2={r.x2}    y2={r.y2}
+            x1={VX} y1={VY}
+            x2={r.x2} y2={r.y2}
             stroke={r.olive ? "#638479" : "white"}
-            strokeWidth={r.olive ? "0.85" : "0.65"}
-            opacity={r.olive ? r.opacity * 1.5 : r.opacity}
+            strokeWidth={r.olive ? "0.9" : "0.65"}
+            opacity={r.olive ? Math.min(0.22, r.opacity * 2.2) : r.opacity}
           />
         ))}
       </g>
 
-      {/* Ray group B — breathe phase offset by half period */}
-      <g style={{ animation: "ray-breathe 11s ease-in-out -5.5s infinite" }}>
+      {/* Group B — breathe phase offset */}
+      <g style={{ animation: "ray-breathe 12s ease-in-out -6s infinite" }}>
         {groupB.map((r, i) => (
           <line
             key={i}
-            x1={FOCAL_X} y1={FOCAL_Y}
-            x2={r.x2}    y2={r.y2}
+            x1={VX} y1={VY}
+            x2={r.x2} y2={r.y2}
             stroke={r.olive ? "#638479" : "white"}
-            strokeWidth={r.olive ? "0.85" : "0.65"}
-            opacity={r.olive ? r.opacity * 1.5 : r.opacity}
+            strokeWidth={r.olive ? "0.9" : "0.65"}
+            opacity={r.olive ? Math.min(0.22, r.opacity * 2.2) : r.opacity}
           />
         ))}
       </g>
 
-      {/* Focal origin — subtle rings */}
-      <circle cx={FOCAL_X} cy={FOCAL_Y} r="24"
-        stroke="rgba(99,132,121,0.15)" strokeWidth="0.75" />
-      <circle cx={FOCAL_X} cy={FOCAL_Y} r="6"
-        stroke="rgba(255,255,255,0.12)" strokeWidth="0.75" />
-      <circle cx={FOCAL_X} cy={FOCAL_Y} r="1.8"
-        fill="rgba(255,255,255,0.45)" />
-
-      {/* Focal radial glow */}
-      <rect width="1400" height="600" fill="url(#rlh-focal)" />
+      {/* Implied source glow */}
+      <rect width="1400" height="600" fill="url(#rlh-source)" />
 
       {/* Fade overlays */}
-      <rect width="1400" height="600" fill="url(#rlh-left)"   />
-      <rect width="1400" height="600" fill="url(#rlh-bottom)" />
-      <rect width="1400" height="600" fill="url(#rlh-top)"    />
+      <rect width="1400" height="600" fill="url(#rlh-left)" />
+      <rect width="1400" height="600" fill="url(#rlh-btm)"  />
+      <rect width="1400" height="600" fill="url(#rlh-top)"  />
     </svg>
   );
 }

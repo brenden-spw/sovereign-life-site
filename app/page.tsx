@@ -5,7 +5,6 @@ import RadialLineHero from "@/components/RadialLineHero";
 import CashValueCurve from "@/components/CashValueCurve";
 import Marquee from "@/components/Marquee";
 import { MountainCtaBg } from "@/components/MountainCta";
-import { ScanLine } from "@/components/SectionBg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function HomePage() {
@@ -23,7 +22,6 @@ export default function HomePage() {
         paddingTop: "5rem",
       }}>
         <RadialLineHero />
-        <ScanLine duration="14s" />
 
         {/* Corner markers */}
         {[

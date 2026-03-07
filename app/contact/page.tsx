@@ -1,4 +1,3 @@
-import { ScanLine } from "@/components/SectionBg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ContactPage() {
@@ -6,7 +5,6 @@ export default function ContactPage() {
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: "#050505", paddingTop: "12rem", paddingBottom: "6rem", position: "relative", overflow: "hidden" }}>
-        <ScanLine duration="14s" />
 
         {/* Corner markers */}
         {[

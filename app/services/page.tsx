@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ScanLine } from "@/components/SectionBg";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ServicesPage() {
@@ -7,7 +6,6 @@ export default function ServicesPage() {
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: "#050505", paddingTop: "12rem", paddingBottom: "6rem", position: "relative", overflow: "hidden" }}>
-        <ScanLine duration="14s" />
 
         {/* Corner markers */}
         {[

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import DampenedWave from "@/components/DampenedWave";
-import { ScanLine } from "@/components/SectionBg";
 import Accordion from "@/components/Accordion";
 import Tooltip from "@/components/Tooltip";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -40,7 +39,6 @@ export default function TheSafeMethodPage() {
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section style={{ backgroundColor: "#050505", paddingTop: "12rem", paddingBottom: "6rem", position: "relative", overflow: "hidden" }}>
         <DampenedWave />
-        <ScanLine duration="14s" />
 
         {/* Corner markers */}
         {[
@@ -186,13 +184,15 @@ export default function TheSafeMethodPage() {
                 Without a Buffer
               </p>
 
-              {/* Legend */}
-              <div style={{ display: "flex", alignItems: "center", gap: "0.625rem", marginBottom: "1.25rem" }}>
-                <span style={{ display: "inline-block", width: "24px", height: "1.5px", backgroundColor: "rgba(255,255,255,0.65)", flexShrink: 0 }} />
-                <span className="label" style={{ color: "#9a9690" }}>Portfolio balance</span>
-                <span style={{ marginLeft: "1rem", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+              {/* Legend — fixed height matches the with-buffer legend */}
+              <div style={{ minHeight: "52px", display: "flex", flexWrap: "wrap", gap: "0.5rem 1.25rem", marginBottom: "1.25rem", alignContent: "flex-start" }}>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ display: "inline-block", width: "24px", height: "1.5px", backgroundColor: "rgba(255,255,255,0.65)", flexShrink: 0 }} />
+                  <span className="label" style={{ color: "#9a9690" }}>Portfolio balance</span>
+                </span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "rgba(255,80,80,0.7)", flexShrink: 0 }} />
-                  <span className="label" style={{ color: "#9a9690" }}>Forced withdrawal in down year</span>
+                  <span className="label" style={{ color: "#9a9690" }}>Forced withdrawal (down year)</span>
                 </span>
               </div>
 
@@ -219,8 +219,8 @@ export default function TheSafeMethodPage() {
                 With a Buffer
               </p>
 
-              {/* Legend */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem 1.25rem", marginBottom: "1.25rem", alignItems: "center" }}>
+              {/* Legend — fixed height matches the without-buffer legend */}
+              <div style={{ minHeight: "52px", display: "flex", flexWrap: "wrap", gap: "0.5rem 1.25rem", marginBottom: "1.25rem", alignContent: "flex-start" }}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "24px", height: "1.5px", backgroundColor: "rgba(255,255,255,0.65)", flexShrink: 0 }} />
                   <span className="label" style={{ color: "#9a9690" }}>Portfolio balance</span>
