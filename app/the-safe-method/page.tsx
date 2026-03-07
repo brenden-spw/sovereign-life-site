@@ -5,6 +5,7 @@ import Accordion from "@/components/Accordion";
 import Tooltip from "@/components/Tooltip";
 import ScrollReveal from "@/components/ScrollReveal";
 import CountUp from "@/components/CountUp";
+import { WithoutBufferDiagram, WithBufferDiagram } from "@/components/BufferDiagram";
 
 const faqItems = [
   {
@@ -157,6 +158,53 @@ export default function TheSafeMethodPage() {
             </p>
             <p className="body-sm" style={{ marginTop: "1rem" }}>— Wade Pfau, PhD, Retirement Income Research</p>
           </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ── BEFORE / AFTER DIAGRAMS ──────────────────────────── */}
+      <section className="section" style={{ backgroundColor: "#070707" }}>
+        <ScrollReveal className="container-site">
+          <p className="label" style={{ marginBottom: "0.875rem", textAlign: "center" }}>Visual Comparison</p>
+          <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1rem", textAlign: "center" }}>
+            The same market — two completely different outcomes.
+          </h2>
+          <p className="body-lg" style={{ maxWidth: "640px", margin: "0 auto 4rem", textAlign: "center" }}>
+            Both scenarios start with identical portfolios and face identical market conditions. The only difference is whether a volatility buffer exists.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+            {/* Without Buffer */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.25rem" }}>
+                <span style={{ display: "inline-block", width: "8px", height: "8px", backgroundColor: "rgba(255,80,80,0.55)", borderRadius: "50%", flexShrink: 0 }} />
+                <p style={{ fontFamily: "'Raleway', sans-serif", fontSize: "0.95rem", fontWeight: 300, color: "#f5f2ed", letterSpacing: "0.03em", margin: 0 }}>Without a Buffer</p>
+              </div>
+              <div className="glass" style={{ padding: "2rem 2.5rem 1.25rem", aspectRatio: "340/240" }}>
+                <WithoutBufferDiagram />
+              </div>
+              <p className="body-sm" style={{ marginTop: "1.25rem", paddingLeft: "0.5rem" }}>
+                Income is taken from the portfolio during market downturns. Each withdrawal at depressed prices locks in permanent losses — and recovery becomes increasingly unlikely. The portfolio is depleted by year 13–14.
+              </p>
+            </div>
+
+            {/* With Buffer */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.25rem" }}>
+                <span style={{ display: "inline-block", width: "8px", height: "8px", backgroundColor: "#638479", borderRadius: "50%", flexShrink: 0 }} />
+                <p style={{ fontFamily: "'Raleway', sans-serif", fontSize: "0.95rem", fontWeight: 300, color: "#f5f2ed", letterSpacing: "0.03em", margin: 0 }}>With a Buffer</p>
+              </div>
+              <div className="glass" style={{ padding: "2rem 2.5rem 1.25rem", aspectRatio: "340/240" }}>
+                <WithBufferDiagram />
+              </div>
+              <p className="body-sm" style={{ marginTop: "1.25rem", paddingLeft: "0.5rem" }}>
+                Income is drawn from the buffer during down years. The portfolio is left untouched — free to recover at its natural pace. The result: a portfolio that remains healthy 16+ years into retirement.
+              </p>
+            </div>
+          </div>
+
+          <p className="body-sm" style={{ marginTop: "2rem", color: "#6a6760", textAlign: "center", fontSize: "0.7rem" }}>
+            Illustrative only. Not a guarantee of future performance. Results vary based on individual circumstances.
+          </p>
         </ScrollReveal>
       </section>
 

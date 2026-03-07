@@ -2,6 +2,9 @@ import Link from "next/link";
 import TypewriterText from "@/components/TypewriterText";
 import FlashlightCard from "@/components/FlashlightCard";
 import VaultRingsHero from "@/components/VaultRingsHero";
+import LifeConvergence from "@/components/LifeConvergence";
+import Marquee from "@/components/Marquee";
+import { MountainCtaBg } from "@/components/MountainCta";
 import { ScanLine } from "@/components/SectionBg";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -62,6 +65,39 @@ export default function HomePage() {
           <div className="animate-in animate-in-delay-3" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
             <Link href="/get-started" className="btn-primary">Book a Free Call</Link>
             <Link href="/services" className="btn-ghost">Our Services</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── MARQUEE TICKER ───────────────────────────────────── */}
+      <Marquee />
+
+      {/* ── STATS BAR ────────────────────────────────────────── */}
+      <section style={{ backgroundColor: "#050505", padding: "0" }}>
+        <div className="container-site">
+          <div
+            className="glass"
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}
+          >
+            {[
+              { value: "2.8%",   label: "Current safe withdrawal rate" },
+              { value: "→ 8%",   label: "With a SAFE Account" },
+              { value: "6 yr",   label: "Target buffer duration" },
+            ].map((stat, i) => (
+              <div
+                key={stat.label}
+                style={{
+                  textAlign: "center",
+                  padding: "2.5rem 1rem",
+                  borderRight: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                }}
+              >
+                <div className="stat-value">{stat.value}</div>
+                <p className="label" style={{ marginTop: "0.625rem", color: "#9a9690" }}>
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -137,40 +173,79 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── APPROACH ─────────────────────────────────────────── */}
+      {/* ── OUR APPROACH — convergence illustration ───────────── */}
       <section className="section" style={{ backgroundColor: "#050505" }}>
-        <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
-          <FlashlightCard className="beam-border" style={{ padding: "4rem", backgroundColor: "#111111", borderRadius: "2px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
-              <div>
-                <p className="label" style={{ marginBottom: "0.875rem" }}>Our Approach</p>
-                <h2 className="headline-sm" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>Coverage that earns its place.</h2>
-                <p className="body-sm" style={{ marginBottom: "1.5rem" }}>Every policy we design has a defined role. We don't recommend coverage that doesn't serve a clear purpose, and we don't structure policies around commission — we structure them around outcomes.</p>
-                <p className="body-sm">Before any recommendation, we want to understand the full picture: income, obligations, existing coverage, and long-term objectives.</p>
-              </div>
-              <div style={{ borderLeft: "1px solid rgba(255,255,255,0.08)", paddingLeft: "4rem" }}>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                  {["Independent, carrier-agnostic recommendations", "Whole life and term products", "Business and personal coverage", "Coordination with existing financial plans", "Licensed and compliance-focused"].map((item, i) => (
-                    <li key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: i < 4 ? "1rem" : 0 }}>
-                      <span style={{ color: "#638479", flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.1em", marginTop: "0.3rem" }}>——</span>
-                      <p className="body-sm" style={{ margin: 0, color: "#D3CFC3" }}>{item}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        <div className="container-site">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "center" }}>
+            <ScrollReveal>
+              <p className="label" style={{ marginBottom: "0.875rem" }}>Our Approach</p>
+              <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>
+                Coverage that earns its place.
+              </h2>
+              <p className="body-lg" style={{ marginBottom: "1.75rem" }}>
+                Every policy we design has a defined role. We don't recommend coverage that doesn't serve a clear purpose, and we don't structure policies around commission — we structure them around outcomes.
+              </p>
+              <p className="body-lg" style={{ marginBottom: "2.5rem" }}>
+                Before any recommendation, we want to understand the full picture: income, obligations, existing coverage, and long-term objectives.
+              </p>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2.5rem" }}>
+                {["Independent, carrier-agnostic recommendations", "Whole life and term products", "Business and personal coverage", "Coordination with existing financial plans", "Licensed and compliance-focused"].map((item, i) => (
+                  <li key={i} style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start", marginBottom: i < 4 ? "0.875rem" : 0 }}>
+                    <span style={{ color: "#638479", flexShrink: 0, fontSize: "0.65rem", letterSpacing: "0.1em", marginTop: "0.3rem" }}>——</span>
+                    <p className="body-sm" style={{ margin: 0, color: "#D3CFC3" }}>{item}</p>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/services" className="btn-ghost">View Our Services</Link>
+            </ScrollReveal>
+
+            <div style={{ display: "flex", alignSelf: "stretch", minHeight: "480px" }}>
+              <LifeConvergence />
             </div>
-          </FlashlightCard>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PULL QUOTE ───────────────────────────────────────── */}
+      <section style={{ backgroundColor: "#070707", borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)", padding: "5rem 0" }}>
+        <ScrollReveal className="container-site" style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <blockquote style={{ borderLeft: "1px solid #638479", paddingLeft: "2.5rem", margin: 0 }}>
+            <p style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
+              fontWeight: 400,
+              fontStyle: "italic",
+              color: "#f5f2ed",
+              lineHeight: 1.5,
+              marginBottom: "1.5rem",
+            }}>
+              &ldquo;Perhaps the greatest risk that retirees face is the possibility that stock prices will fall early in retirement. A buffer asset will provide the greatest protection against outliving assets.&rdquo;
+            </p>
+            <p className="label" style={{ color: "#638479" }}>
+              Wade Pfau, PhD — Retirement Income Research
+            </p>
+          </blockquote>
         </ScrollReveal>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
-        <ScrollReveal className="container-site" style={{ maxWidth: "680px", margin: "0 auto", textAlign: "center" }}>
-          <p className="label" style={{ marginBottom: "1.25rem" }}>Begin</p>
-          <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.5rem" }}>Start with a conversation.</h2>
-          <p className="body-lg" style={{ marginBottom: "2.5rem" }}>If you're evaluating coverage or want to understand how a policy might fit your specific situation, we're happy to talk through it.</p>
+      {/* ── MOUNTAIN CTA ─────────────────────────────────────── */}
+      <section style={{ position: "relative", backgroundColor: "#030303", overflow: "hidden", padding: "9rem 0" }}>
+        <MountainCtaBg />
+        <ScrollReveal
+          className="container-site"
+          style={{ position: "relative", zIndex: 2, maxWidth: "640px", margin: "0 auto", textAlign: "center" }}
+        >
+          <p className="label" style={{ marginBottom: "1.5rem" }}>Begin</p>
+          <h2 className="headline-md" style={{ color: "#ffffff", marginBottom: "1.75rem" }}>
+            Start with a conversation.
+          </h2>
+          <p className="body-lg" style={{ marginBottom: "3rem" }}>
+            If you're evaluating coverage or want to understand how a policy might fit your specific situation, we're happy to talk through it.
+          </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/get-started" className="btn-primary">Book a Free Call</Link>
+            <a href="https://calendar.app.google/qWDAQ1Af6VZSWcV56" target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Book a Free Call
+            </a>
             <Link href="/contact" className="btn-ghost">Get in Touch</Link>
           </div>
         </ScrollReveal>
