@@ -70,10 +70,8 @@ export default function ServicesPage() {
               <ScrollReveal
                 key={service.title}
                 delay={i * 60}
+                className="grid-split"
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "4rem",
                   alignItems: "start",
                   padding: "3.5rem 0",
                   borderTop: "1px solid #1e1e1e",

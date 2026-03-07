@@ -73,7 +73,7 @@ export default function HomePage() {
       {/* ── WHAT WE DO ───────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
         <div className="container-site">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
+          <div className="grid-split" style={{ alignItems: "start" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>What We Do</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>
@@ -108,7 +108,7 @@ export default function HomePage() {
       {/* ── THE FIRM ─────────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#070707" }}>
         <div className="container-site">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
+          <div className="grid-split" style={{ alignItems: "start" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>The Firm</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>
@@ -144,7 +144,7 @@ export default function HomePage() {
       {/* ── OUR APPROACH — convergence illustration ───────────── */}
       <section className="section" style={{ backgroundColor: "#050505" }}>
         <div className="container-site">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "center" }}>
+          <div className="grid-split" style={{ alignItems: "center" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>Our Approach</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>
@@ -187,22 +187,16 @@ export default function HomePage() {
       {/* ── STATS BAR ────────────────────────────────────────── */}
       <section style={{ backgroundColor: "#050505", padding: "4rem 0", borderTop: "1px solid rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
         <div className="container-site">
-          <div
-            className="glass"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}
-          >
+          <div className="glass grid-stats">
             {[
               { value: "2.8%", label: "Current safe withdrawal rate" },
               { value: "→ 8%", label: "With a SAFE Account" },
               { value: "6 yr", label: "Target buffer duration" },
-            ].map((stat, i) => (
+            ].map((stat) => (
               <div
                 key={stat.label}
-                style={{
-                  textAlign: "center",
-                  padding: "2.5rem 1rem",
-                  borderRight: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                }}
+                className="stat-cell"
+                style={{ textAlign: "center", padding: "2.5rem 1rem" }}
               >
                 <div className="stat-value">{stat.value}</div>
                 <p className="label" style={{ marginTop: "0.625rem", color: "#9a9690" }}>

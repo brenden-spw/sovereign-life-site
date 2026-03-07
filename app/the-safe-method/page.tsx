@@ -81,7 +81,7 @@ export default function TheSafeMethodPage() {
 
           <div className="glass" style={{ padding: "3rem" }}>
             <p className="label" style={{ marginBottom: "2rem", color: "#638479" }}>The retirement gap — $200k/year income goal</p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+            <div className="grid-split-narrow">
               {[
                 { label: "Without a SAFE Account", rate: "2.8% distribution rate", value: 7100000 },
                 { label: "With a SAFE Account",    rate: "8% distribution rate",   value: 2500000 },
@@ -170,7 +170,7 @@ export default function TheSafeMethodPage() {
             Both portfolios start at $1M, need $60k/year, and face the same market sequence. The only variable: whether a $360k volatility buffer exists.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem" }}>
+          <div className="grid-split-narrow">
 
             {/* ── WITHOUT BUFFER ─────────────────── */}
             <div>
@@ -258,7 +258,7 @@ export default function TheSafeMethodPage() {
       {/* ── WHY WHOLE LIFE ───────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
         <div className="container-site">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
+          <div className="grid-split" style={{ alignItems: "start" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>The SAFE Account</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>Why only one account type qualifies.</h2>

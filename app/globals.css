@@ -175,6 +175,61 @@ hr.rule { border: none; border-top: 1px solid var(--bg-border); }
 details summary { cursor: pointer; list-style: none; }
 details summary::-webkit-details-marker { display: none; }
 
+/* ── Responsive grid layouts ─────────────────────────── */
+.grid-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+@media (min-width: 768px) {
+  .grid-split { grid-template-columns: 1fr 1fr; gap: 6rem; }
+}
+
+.grid-split-narrow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .grid-split-narrow { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+
+.grid-thirds {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .grid-thirds { grid-template-columns: repeat(3, 1fr); }
+}
+
+.grid-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .grid-stats { grid-template-columns: repeat(3, 1fr); }
+}
+
+.stat-cell + .stat-cell {
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+@media (min-width: 768px) {
+  .stat-cell + .stat-cell { border-top: none; border-left: 1px solid rgba(255,255,255,0.06); }
+}
+
+.grid-footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 640px) {
+  .grid-footer { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+@media (min-width: 1024px) {
+  .grid-footer { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; }
+}
+
 /* ── Animations ──────────────────────────────────────── */
 @keyframes blink-cursor {
   0%, 100% { opacity: 1; }
@@ -186,47 +241,6 @@ details summary::-webkit-details-marker { display: none; }
   to   { opacity: 1; transform: translateY(0);     }
 }
 
-@keyframes hero-drift {
-  0%,  100% { transform: translate(0,    0   ); }
-  25%        { transform: translate(4%,  3%  ); }
-  50%        { transform: translate(-3%, 5%  ); }
-  75%        { transform: translate(3%,  -4% ); }
-}
-
-/* Beam border — conic gradient rotates via @property */
-@property --beam-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes beam-rotate {
-  to { --beam-angle: 360deg; }
-}
-
-.beam-border {
-  background:
-    linear-gradient(#111111, #111111) padding-box,
-    conic-gradient(
-      from var(--beam-angle),
-      #1e1e1e 72%,
-      #638479 82%,
-      rgba(245,242,237,0.45) 86%,
-      #638479 90%,
-      #1e1e1e 100%
-    ) border-box;
-  border: 1px solid transparent;
-  animation: beam-rotate 5s linear infinite;
-}
-
-/* Beam line — travels horizontally across a rule */
-@keyframes beam-line {
-  0%   { transform: translateX(-100%); opacity: 0;   }
-  10%  { opacity: 1;                                  }
-  90%  { opacity: 1;                                  }
-  100% { transform: translateX(400%);  opacity: 0;   }
-}
-
 .animate-in {
   opacity: 0;
   animation: fadeInUp 0.65s ease forwards;
@@ -234,36 +248,6 @@ details summary::-webkit-details-marker { display: none; }
 .animate-in-delay-1 { animation-delay: 0.1s; }
 .animate-in-delay-2 { animation-delay: 0.2s; }
 .animate-in-delay-3 { animation-delay: 0.35s; }
-
-/* Scan line sweeps down the hero */
-@keyframes scan-line {
-  0%   { top: -2px;   opacity: 0; }
-  3%   { opacity: 1;              }
-  97%  { opacity: 1;              }
-  100% { top: 100%;   opacity: 0; }
-}
-
-/* Slow float for ambient orbs */
-@keyframes float-a {
-  0%, 100% { transform: translate(0,    0   ) scale(1);    }
-  33%       { transform: translate(3%,  4%  ) scale(1.04); }
-  66%       { transform: translate(-2%, 2%  ) scale(0.97); }
-}
-@keyframes float-b {
-  0%, 100% { transform: translate(0,    0   ) scale(1);    }
-  33%       { transform: translate(-4%, -2% ) scale(0.96); }
-  66%       { transform: translate(2%,  -4% ) scale(1.03); }
-}
-@keyframes float-c {
-  0%, 100% { transform: translate(0,   0  ); }
-  50%       { transform: translate(3%, -3%); }
-}
-
-/* Slow horizontal drift for diagonal accent lines */
-@keyframes drift-x {
-  0%, 100% { transform: translateX(0); }
-  50%       { transform: translateX(1.5%); }
-}
 
 /* Infinite marquee ticker */
 @keyframes marquee {

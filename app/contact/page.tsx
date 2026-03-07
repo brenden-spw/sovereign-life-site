@@ -33,7 +33,7 @@ export default function ContactPage() {
       {/* ── CONTACT OPTIONS ──────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
         <div className="container-site">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
+          <div className="grid-split" style={{ alignItems: "start" }}>
 
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>Schedule a Call</p>

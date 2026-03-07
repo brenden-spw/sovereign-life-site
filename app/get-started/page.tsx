@@ -33,7 +33,7 @@ export default function GetStartedPage() {
       {/* ── WHAT TO EXPECT ───────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#0a0a0a" }}>
         <div className="container-site">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
+          <div className="grid-split" style={{ alignItems: "start" }}>
             <ScrollReveal>
               <p className="label" style={{ marginBottom: "0.875rem" }}>What to Expect</p>
               <h2 className="headline-md" style={{ color: "#f5f2ed", marginBottom: "1.75rem" }}>
@@ -120,7 +120,7 @@ export default function GetStartedPage() {
       {/* ── REASSURANCE ──────────────────────────────────────── */}
       <section className="section" style={{ backgroundColor: "#050505" }}>
         <ScrollReveal className="container-site" style={{ maxWidth: "860px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }}>
+          <div className="grid-thirds">
             {[
               {
                 title: "No pressure",
