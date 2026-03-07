@@ -171,9 +171,9 @@ export default function HomePage() {
               <div style={{ flex: 1 }}>
                 <CashValueCurve />
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem 1.5rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem 1rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                 {["Guaranteed", "Tax-Free Access", "Non-Correlated", "Liquid"].map((attr) => (
-                  <span key={attr} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span key={attr} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                     <span style={{ width: "5px", height: "5px", borderRadius: "50%", backgroundColor: "#638479", flexShrink: 0 }} />
                     <span className="label" style={{ color: "#9a9690" }}>{attr}</span>
                   </span>

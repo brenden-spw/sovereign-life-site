@@ -66,10 +66,11 @@ const X_TICKS = [
   { x: 478, label: "Yr 30" },
 ];
 
-// "TODAY" marker sits at ~Yr 10 on the cash value curve
-// At x=195 (Yr 10), the bezier yields y ≈ 150
+// "TODAY" marker sits at ~Yr 10 on the cash value curve.
+// Verified: second bezier segment (155,174)→(258,114), CP (185,143)(225,124).
+// At t=0.40 → x≈195, y≈142.
 const TODAY_X = 195;
-const TODAY_Y = 150;
+const TODAY_Y = 142;
 
 export default function CashValueCurve() {
   const ref = useRef<HTMLDivElement>(null);
@@ -173,36 +174,34 @@ export default function CashValueCurve() {
         {/* ── LABELS (fade in after lines drawn) ─────────────── */}
         <g opacity={labelOp} style={{ transition: "opacity 0.2s linear" }}>
 
-          {/* DEATH BENEFIT — anchored left, ABOVE the line (line is at y=30) */}
-          <text x="56" y="22" fontSize="7.5"
-            fill="rgba(255,255,255,0.50)"
-            fontFamily="Inter, sans-serif" letterSpacing="0.13em">
+          {/* Inline legend — top-left of chart area, well below the DB line (y=30)
+              and well above the CV curve at this x (~y=255). No overlap possible. */}
+          {/* Death benefit legend row */}
+          <line x1="60" y1="46" x2="80" y2="46"
+            stroke="rgba(255,255,255,0.5)" strokeWidth="1.3" />
+          <text x="85" y="50" fontSize="7"
+            fill="rgba(255,255,255,0.5)"
+            fontFamily="Inter, sans-serif" letterSpacing="0.12em">
             DEATH BENEFIT
           </text>
 
-          {/* CASH VALUE — anchored left, BELOW the curve's starting y (curve starts at y=258) */}
-          <text x="56" y="287" fontSize="7.5"
+          {/* Cash value legend row */}
+          <line x1="60" y1="62" x2="80" y2="62"
+            stroke="#638479" strokeWidth="1.7" />
+          <text x="85" y="66" fontSize="7"
             fill="rgba(99,132,121,0.85)"
-            fontFamily="Inter, sans-serif" letterSpacing="0.13em">
+            fontFamily="Inter, sans-serif" letterSpacing="0.12em">
             CASH VALUE
           </text>
 
-          {/* PURE INSURANCE label — centered in the gap at Yr 15 (x=258)
-              Gap spans y=30 to y=114 → midpoint y=72. Label at y=68 is clearly inside. */}
-          <text x="256" y="65" fontSize="6.5"
-            fill="rgba(255,255,255,0.22)"
-            fontFamily="Inter, sans-serif" textAnchor="middle" letterSpacing="0.1em">
-            PURE INSURANCE ↓
-          </text>
-
-          {/* TODAY marker — at Yr 10 on the cash value curve (x=195, y≈150) */}
+          {/* TODAY marker — verified on curve at (195, 142) */}
           <circle cx={TODAY_X} cy={TODAY_Y} r="3" fill="#638479" opacity="0.9" />
           <line
             x1={TODAY_X} y1={TODAY_Y - 5}
-            x2={TODAY_X} y2={TODAY_Y - 26}
+            x2={TODAY_X} y2={TODAY_Y - 22}
             stroke="rgba(99,132,121,0.45)" strokeWidth="0.8" strokeDasharray="2 2"
           />
-          <text x={TODAY_X + 5} y={TODAY_Y - 28} fontSize="6.5"
+          <text x={TODAY_X + 5} y={TODAY_Y - 25} fontSize="6.5"
             fill="rgba(99,132,121,0.7)"
             fontFamily="Inter, sans-serif" letterSpacing="0.1em">
             TODAY
